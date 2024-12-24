@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gráfico Desmos</title>
+    <script src="https://www.desmos.com/api/v1.10/calculator.js?apiKey=dcb31709b452b1cf9dc26972add0fda6"></script>
+    <style>
+        html, body, #calculator {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%; /* Garante altura total para o container */
+            overflow: hidden;
+        }
+    </style>
+
+
+
+</head>
+<body>
+<!--h1>Teste1</h1-->
+<div id="calculator"></div>
+
+<script>
+    const calculatorElement = document.getElementById('calculator');
+    const calculator = Desmos.GraphingCalculator(calculatorElement, {
+            showExpressions: false,                // Oculta a lista de equações
+            settingsMenu: false,                   // Oculta o menu de configurações
+            zoomButtons: false,                    // Oculta os botões de zoom
+            showResetButtonOnGraphpaper: false,    // Oculta o botão de visão inicial (casa)
+            expressions: false,                    // Evita a interação com as expressões
+            border: false                          // Remove borda padrão
+        });
+
+    // Obter o nome do arquivo JSON a partir da query string
+    const params = new URLSearchParams(window.location.search);
+    const jsonFile = params.get("json");
+
+    if (jsonFile) {
+        console.log("Carregando arquivo JSON:", jsonFile);
+        fetch(jsonFile)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`Erro HTTP: ${response.status}`);
+                }
+                return response.json();
+            })
+            .then(state => {
+                console.log("Estado JSON carregado:", state);
+                try {
+                    calculator.setState(state);
+                    console.log("Estado aplicado com sucesso.");
+                } catch (error) {
+                    console.error("Erro ao aplicar o estado:", error);
+                }
+            })
+            .catch(error => console.error("Erro ao carregar o estado do gráfico:", error));
+    } else {
+        console.error("Nenhum arquivo JSON foi especificado na URL.");
+    }
+
+    window.addEventListener('load', () => {
+        const htmlElement = document.documentElement;
+        const bodyElement = document.body;
+        const calculatorElement = document.getElementById('calculator');
+
+        console.log("Tamanho inicial do html:", htmlElement.clientWidth, htmlElement.clientHeight);
+        console.log("Tamanho inicial do body:", bodyElement.clientWidth, bodyElement.clientHeight);
+
+        // Ajustar dinamicamente se os tamanhos forem incorretos
+        if (htmlElement.clientHeight === 0 || bodyElement.clientHeight === 0) {
+            htmlElement.style.height = '100vh';
+            bodyElement.style.height = '100vh';
+            console.log("Altura ajustada para html e body.");
+        }
+
+        // Forçar tamanho do #calculator
+        calculatorElement.style.height = `${window.innerHeight}px`;
+        calculator.resize();
+        console.log("Tamanho ajustado do #calculator após carregamento:", calculatorElement.clientWidth, calculatorElement.clientHeight);
+    });
+
+
+    window.addEventListener('resize', () => {
+        const calculatorElement = document.getElementById('calculator');
+        calculatorElement.style.height = `${window.innerHeight}px`; // Atualiza a altura quando a janela é redimensionada
+        calculator.resize();
+        console.log("Tamanho atualizado do #calculator após ajuste:", calculatorElement.clientWidth, calculatorElement.clientHeight);
+    });
+
+    const body = document.body;
+    const html = document.documentElement;
+
+    console.log("Tamanho do body:", body.clientWidth, body.clientHeight);
+    console.log("Tamanho do html:", html.clientWidth, html.clientHeight);
+
+
+</script>
+</body>
+</html>
