@@ -4,9 +4,9 @@
   "graph": {
     "viewport": {
       "xmin": -12.843702938784393,
-      "ymin": -16.21199018764773,
+      "ymin": -20.914059799901455,
       "xmax": 28.554096896806936,
-      "ymax": 17.757215475241665
+      "ymax": 22.4592850874954
     },
     "showGrid": false,
     "showXAxis": false,
@@ -20,7 +20,7 @@
       {
         "type": "text",
         "id": "121578",
-        "text": "Resolver divisão através de subtrações sucessivas\n- Ajustar as variáveis Dividendo Inicial e Divisor\n- Apertar o botão de reset\n- A variável Parcela controla quantas unidades serão dadas para cada pessoa de cada vez (pode ser alterado)\n- O botão passo distribui uma Parcela de unidades para cada pessoa\n- Repetir até o monte no meio ficar menor do que a quantidade de pessoas\n- Quociente aparece em amarelo\n- Na direita da tela as subtrações são anotadas como se faria no papel"
+        "text": "Clique no botão \"Abrir Vídeo\" para ver o tutorial de como usar essa ferramenta"
       },
       {
         "type": "expression",
@@ -35,8 +35,9 @@
         "latex": "P_{arcela}=1",
         "slider": {
           "hardMin": true,
+          "hardMax": true,
           "min": "1",
-          "max": "100",
+          "max": "Q_{max}",
           "step": "1"
         }
       },
@@ -156,6 +157,160 @@
         "latex": "\\frac{b_{otaoNum}\\left(D_{ivisor}\\cdot P_{arcela},t\\right)}{1.5}+\\left(0.5,2.25\\right)",
         "lineOpacity": ".7n_{ot}\\left(A_{cabou}\\right)",
         "lineWidth": "2.5n_{ot}\\left(O_{k}\\right)"
+      },
+      {
+        "type": "folder",
+        "id": "121001",
+        "title": "Divisão e MEF",
+        "collapsed": true
+      },
+      {
+        "type": "text",
+        "id": "121007",
+        "folderId": "121001",
+        "text": "Estados"
+      },
+      {
+        "type": "text",
+        "id": "121011",
+        "folderId": "121001",
+        "text": "Faz as ações na transição entre estados"
+      },
+      {
+        "type": "expression",
+        "id": "121021",
+        "folderId": "121001",
+        "color": "#6042a6",
+        "latex": "E_{stado}=0",
+        "slider": {
+          "hardMin": true,
+          "hardMax": true,
+          "min": "I_{nicial}",
+          "max": "T_{ira}",
+          "step": "1"
+        }
+      },
+      {
+        "type": "expression",
+        "id": "121012",
+        "folderId": "121001",
+        "color": "#2d70b3",
+        "latex": "I_{nicial}=0+0"
+      },
+      {
+        "type": "expression",
+        "id": "121015",
+        "folderId": "121001",
+        "color": "#6042a6",
+        "latex": "T_{ira}=1+0"
+      },
+      {
+        "type": "expression",
+        "id": "121575",
+        "folderId": "121001",
+        "color": "#c74440",
+        "latex": "P_{assoUnico}=Q_{uociente}\\to Q_{uociente}+P_{arcela},D_{ividendo}\\to D_{ividendo}-D_{ivisor}\\cdot P_{arcela},S_{ubtraiLista}\\to\\operatorname{join}\\left(S_{ubtraiLista},\\ D_{ivisor}\\cdot P_{arcela}\\right),\\ D_{ividendoLista}\\to\\operatorname{join}\\left(D_{ividendoLista},\\ D_{ividendo}-D_{ivisor}\\cdot P_{arcela}\\right),\\ Q_{uocienteLista}\\to\\ \\operatorname{join}\\left(Q_{uocienteLista},\\ P_{arcela}\\right)"
+      },
+      {
+        "type": "expression",
+        "id": "121576",
+        "folderId": "121001",
+        "color": "#2d70b3",
+        "latex": "p_{asso}=\\left\\{P_{arcela}\\ge1:\\left\\{D_{ividendo}\\ge D_{ivisor}\\cdot P_{arcela}:P_{assoUnico}\\right\\}\\right\\}"
+      },
+      {
+        "type": "expression",
+        "id": "121017",
+        "folderId": "121001",
+        "color": "#c74440",
+        "latex": "p_{assoOld}=\\left\\{E_{stado}=I_{nicial}:\\left\\{D_{ividendo}\\ge D_{ivisor}\\cdot P_{arcela}:\\left(P_{asso1},\\ E_{stado}\\to T_{ira}\\right)\\right\\},E_{stado}=T_{ira}:\\left(P_{asso2},\\ E_{stado}\\to I_{nicial}\\right)\\right\\}"
+      },
+      {
+        "type": "expression",
+        "id": "121023",
+        "folderId": "121001",
+        "color": "#c74440",
+        "latex": "P_{asso1}=P_{ilha}\\to D_{ivisor}\\cdot P_{arcela},\\ D_{ividendo}\\to D_{ividendo}-D_{ivisor}\\cdot P_{arcela},S_{ubtraiLista}\\to\\operatorname{join}\\left(S_{ubtraiLista},\\ D_{ivisor}\\cdot P_{arcela}\\right),\\ D_{ividendoLista}\\to\\operatorname{join}\\left(D_{ividendoLista},\\ D_{ividendo}-D_{ivisor}\\cdot P_{arcela}\\right),\\ Q_{uocienteLista}\\to\\ \\operatorname{join}\\left(Q_{uocienteLista},\\ P_{arcela}\\right)"
+      },
+      {
+        "type": "expression",
+        "id": "121024",
+        "folderId": "121001",
+        "color": "#2d70b3",
+        "latex": "P_{asso2}=Q_{uociente}\\to Q_{uociente}+P_{arcela},\\ P_{ilha}\\to0"
+      },
+      {
+        "type": "expression",
+        "id": "121022",
+        "folderId": "121001",
+        "color": "#000000",
+        "latex": "r_{eset}=E_{stado}\\to I_{nicial},Q_{uociente}\\to0,P_{ilha}\\to0,P_{arcela}\\to1,D_{ividendo}\\to D_{ividendoInicial},D_{ividendoLista}\\to\\left[D_{ividendoInicial}\\right],Q_{uocienteLista}\\to\\left[\\right],S_{ubtraiLista}\\to\\left[\\right]"
+      },
+      {
+        "type": "text",
+        "id": "121010",
+        "folderId": "121001",
+        "text": "Variáveis"
+      },
+      {
+        "type": "expression",
+        "id": "121585",
+        "folderId": "121001",
+        "color": "#c74440",
+        "latex": "Q_{max}=\\max\\left(1,\\operatorname{floor}\\left(1.5\\frac{D_{ividendo}}{D_{ivisor}}\\right)\\right)"
+      },
+      {
+        "type": "expression",
+        "id": "121002",
+        "folderId": "121001",
+        "color": "#000000",
+        "latex": "D_{ividendo}=30",
+        "slider": {
+          "step": "1"
+        }
+      },
+      {
+        "type": "expression",
+        "id": "121004",
+        "folderId": "121001",
+        "color": "#2d70b3",
+        "latex": "Q_{uociente}=0",
+        "slider": {
+          "hardMin": true,
+          "min": "0",
+          "max": "12",
+          "step": "1"
+        }
+      },
+      {
+        "type": "expression",
+        "id": "121005",
+        "folderId": "121001",
+        "color": "#388c46",
+        "latex": "R_{esto}=0",
+        "slider": {
+          "hardMin": true,
+          "min": "0",
+          "step": "1"
+        }
+      },
+      {
+        "type": "expression",
+        "id": "121016",
+        "folderId": "121001",
+        "color": "#000000",
+        "latex": "P_{ilha}=0",
+        "slider": {
+          "hardMin": true,
+          "min": "0",
+          "step": "1"
+        }
+      },
+      {
+        "type": "text",
+        "id": "121020",
+        "folderId": "121001",
+        "text": "Pilha é a quantidade de bolinhas tirada do dividendo (é um multiplo do divisor)\nParcela é a quantidade de bolinhas tirada para cada pessoa (multiplica o divisor)"
       },
       {
         "type": "folder",
@@ -325,153 +480,6 @@
         "folderId": "121041",
         "color": "#000000",
         "latex": "A_{cabou}=\\left\\{D_{ividendo}<D_{ivisor}:1,0\\right\\}"
-      },
-      {
-        "type": "folder",
-        "id": "121001",
-        "title": "Divisão e MEF",
-        "collapsed": true
-      },
-      {
-        "type": "text",
-        "id": "121007",
-        "folderId": "121001",
-        "text": "Estados"
-      },
-      {
-        "type": "text",
-        "id": "121011",
-        "folderId": "121001",
-        "text": "Faz as ações na transição entre estados"
-      },
-      {
-        "type": "expression",
-        "id": "121021",
-        "folderId": "121001",
-        "color": "#6042a6",
-        "latex": "E_{stado}=0",
-        "slider": {
-          "hardMin": true,
-          "hardMax": true,
-          "min": "I_{nicial}",
-          "max": "T_{ira}",
-          "step": "1"
-        }
-      },
-      {
-        "type": "expression",
-        "id": "121012",
-        "folderId": "121001",
-        "color": "#2d70b3",
-        "latex": "I_{nicial}=0+0"
-      },
-      {
-        "type": "expression",
-        "id": "121015",
-        "folderId": "121001",
-        "color": "#6042a6",
-        "latex": "T_{ira}=1+0"
-      },
-      {
-        "type": "expression",
-        "id": "121575",
-        "folderId": "121001",
-        "color": "#c74440",
-        "latex": "P_{assoUnico}=Q_{uociente}\\to Q_{uociente}+P_{arcela},D_{ividendo}\\to D_{ividendo}-D_{ivisor}\\cdot P_{arcela},S_{ubtraiLista}\\to\\operatorname{join}\\left(S_{ubtraiLista},\\ D_{ivisor}\\cdot P_{arcela}\\right),\\ D_{ividendoLista}\\to\\operatorname{join}\\left(D_{ividendoLista},\\ D_{ividendo}-D_{ivisor}\\cdot P_{arcela}\\right),\\ Q_{uocienteLista}\\to\\ \\operatorname{join}\\left(Q_{uocienteLista},\\ P_{arcela}\\right)"
-      },
-      {
-        "type": "expression",
-        "id": "121576",
-        "folderId": "121001",
-        "color": "#2d70b3",
-        "latex": "p_{asso}=\\left\\{P_{arcela}\\ge1:\\left\\{D_{ividendo}\\ge D_{ivisor}\\cdot P_{arcela}:P_{assoUnico}\\right\\}\\right\\}"
-      },
-      {
-        "type": "expression",
-        "id": "121017",
-        "folderId": "121001",
-        "color": "#c74440",
-        "latex": "p_{assoOld}=\\left\\{E_{stado}=I_{nicial}:\\left\\{D_{ividendo}\\ge D_{ivisor}\\cdot P_{arcela}:\\left(P_{asso1},\\ E_{stado}\\to T_{ira}\\right)\\right\\},E_{stado}=T_{ira}:\\left(P_{asso2},\\ E_{stado}\\to I_{nicial}\\right)\\right\\}"
-      },
-      {
-        "type": "expression",
-        "id": "121023",
-        "folderId": "121001",
-        "color": "#c74440",
-        "latex": "P_{asso1}=P_{ilha}\\to D_{ivisor}\\cdot P_{arcela},\\ D_{ividendo}\\to D_{ividendo}-D_{ivisor}\\cdot P_{arcela},S_{ubtraiLista}\\to\\operatorname{join}\\left(S_{ubtraiLista},\\ D_{ivisor}\\cdot P_{arcela}\\right),\\ D_{ividendoLista}\\to\\operatorname{join}\\left(D_{ividendoLista},\\ D_{ividendo}-D_{ivisor}\\cdot P_{arcela}\\right),\\ Q_{uocienteLista}\\to\\ \\operatorname{join}\\left(Q_{uocienteLista},\\ P_{arcela}\\right)"
-      },
-      {
-        "type": "expression",
-        "id": "121024",
-        "folderId": "121001",
-        "color": "#2d70b3",
-        "latex": "P_{asso2}=Q_{uociente}\\to Q_{uociente}+P_{arcela},\\ P_{ilha}\\to0"
-      },
-      {
-        "type": "expression",
-        "id": "121022",
-        "folderId": "121001",
-        "color": "#000000",
-        "latex": "r_{eset}=E_{stado}\\to I_{nicial},Q_{uociente}\\to0,P_{ilha}\\to0,P_{arcela}\\to1,D_{ividendo}\\to D_{ividendoInicial},D_{ividendoLista}\\to\\left[D_{ividendoInicial}\\right],Q_{uocienteLista}\\to\\left[\\right],S_{ubtraiLista}\\to\\left[\\right]"
-      },
-      {
-        "type": "text",
-        "id": "121010",
-        "folderId": "121001",
-        "text": "Variáveis"
-      },
-      {
-        "type": "expression",
-        "id": "121002",
-        "folderId": "121001",
-        "color": "#000000",
-        "latex": "D_{ividendo}=30",
-        "slider": {
-          "step": "1"
-        }
-      },
-      {
-        "type": "expression",
-        "id": "121004",
-        "folderId": "121001",
-        "color": "#2d70b3",
-        "latex": "Q_{uociente}=0",
-        "slider": {
-          "hardMin": true,
-          "min": "0",
-          "max": "12",
-          "step": "1"
-        }
-      },
-      {
-        "type": "expression",
-        "id": "121005",
-        "folderId": "121001",
-        "color": "#388c46",
-        "latex": "R_{esto}=0",
-        "slider": {
-          "hardMin": true,
-          "min": "0",
-          "step": "1"
-        }
-      },
-      {
-        "type": "expression",
-        "id": "121016",
-        "folderId": "121001",
-        "color": "#000000",
-        "latex": "P_{ilha}=0",
-        "slider": {
-          "hardMin": true,
-          "min": "0",
-          "step": "1"
-        }
-      },
-      {
-        "type": "text",
-        "id": "121020",
-        "folderId": "121001",
-        "text": "Pilha é a quantidade de bolinhas tirada do dividendo (é um multiplo do divisor)\nParcela é a quantidade de bolinhas tirada para cada pessoa (multiplica o divisor)"
       },
       {
         "type": "folder",
