@@ -4,7 +4,7 @@ package com.example.cursinhoisaac
 data class GraficoData(
     val titulo: String,
     val arquivoJson: String, // Adicionamos o nome do arquivo JSON
-    val videoFileName: String // Nome do arquivo de vídeo
+    val videoUrl: String // Adicionado para armazenar o link do vídeo
 )
 
 // Lista com os dados dos gráficos
@@ -12,6 +12,6 @@ val graficos = listOf(
     GraficoData(
         titulo = "Divisão",
         arquivoJson = "Divisao.json",
-        videoFileName = "videoDivisao.mp4"
+        videoUrl = "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
     )
 )

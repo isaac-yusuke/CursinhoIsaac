@@ -73,7 +73,7 @@ fun EscolinhaApp() {
             val grafico = graficos.getOrNull(index)
             TelaGraficoI(
                 estadoJson = grafico?.arquivoJson ?: "arquivo_padrao.json",
-                videoFileName = "video_padrao.mp4"
+                videoUrl = grafico?.videoUrl ?: "https://www.youtube.com/watch?v=dQw4w9WgXcQ" // URL padrão
             )
         }
     }
@@ -164,7 +164,7 @@ fun Tela2(listaDeBotoes: List<String>, onBotaoClick: (Int) -> Unit) {
 }
 
 @Composable
-fun TelaGraficoI(estadoJson: String, videoFileName: String) {
+fun TelaGraficoI(estadoJson: String, videoUrl: String) {
     val context = LocalContext.current
     val server = remember { LocalWebServer(context) }
     var isServerReady by remember { mutableStateOf(false) } // Estado para controlar a inicialização do servidor
@@ -207,11 +207,10 @@ fun TelaGraficoI(estadoJson: String, videoFileName: String) {
         // Botão no canto inferior direito
         Button(
             onClick = {
-                val videoIntent = android.content.Intent(android.content.Intent.ACTION_VIEW).apply {
-                    val videoUri = android.net.Uri.parse("file:///android_asset/$videoFileName")
-                    setDataAndType(videoUri, "video/mp4") // Tipo MIME para vídeos MP4
+                val intent = android.content.Intent(android.content.Intent.ACTION_VIEW).apply {
+                    data = android.net.Uri.parse(videoUrl) // Define a URL do vídeo
                 }
-                context.startActivity(videoIntent)
+                context.startActivity(intent)
             },
             colors = ButtonDefaults.buttonColors(
                 containerColor = Color(0xFF2E7D32), // Cor verde para o botão
@@ -252,6 +251,6 @@ fun PreviewTela2() {
 fun PreviewTelaGraficoI() {
     TelaGraficoI(
         estadoJson = "DaviEGolias.json",
-        videoFileName = "video_padrao.mp4"
+        videoUrl = "https://www.youtube.com/watch?v=dQw4w9WgXcQ" // URL padrão
     )
 }
