@@ -217,7 +217,7 @@ fun TelaGraficoI(estadoJson: String, videoUrl: String) {
                 contentColor = Color.White // Cor do texto
             ),
             modifier = Modifier
-                .align(Alignment.BottomEnd) // Alinha o botão no canto inferior direito
+                .align(Alignment.TopEnd) // Alinha o botão no canto superior direito
                 .padding(16.dp) // Padding para afastar da borda
         ) {
             Text(text = "Abrir Vídeo")
