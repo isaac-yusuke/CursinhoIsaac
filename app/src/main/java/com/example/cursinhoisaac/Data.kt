@@ -10,16 +10,10 @@ data class GraficoData(
 // Lista com os dados dos gráficos
 val graficos = listOf(
     GraficoData(
-        titulo = "A Criação",
+        titulo = "Divisão",
         texto = """
-            A Criação
-            
-            Texto Bíblico: 
-            Gênesis 1
-            
-            No princípio Deus criou os céus e a Terra. Você se lembra do que Deus criou em cada dia da semana?
-            Arraste o ponto na tela para ver!
+            Divisão - tira o texto?
         """.trimIndent(),
-        arquivoJson = "ACriacao.json"
+        arquivoJson = "Divisao.json"
     )
 )

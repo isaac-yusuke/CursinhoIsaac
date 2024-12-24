@@ -72,9 +72,7 @@ fun EscolinhaApp() {
             // Obtém os dados do gráfico correspondente de Data.kt
             val grafico = graficos.getOrNull(index)
             TelaGraficoI(
-                estadoJson = grafico?.arquivoJson ?: "arquivo_padrao.json",
-                imagem2 = R.drawable.imagem2, // Mantém a imagem existente
-                textoRolavel = grafico?.texto ?: "Texto padrão"
+                estadoJson = grafico?.arquivoJson ?: "arquivo_padrao.json"
             )
         }
     }
@@ -165,7 +163,7 @@ fun Tela2(listaDeBotoes: List<String>, onBotaoClick: (Int) -> Unit) {
 }
 
 @Composable
-fun TelaGraficoI(estadoJson: String, imagem2: Int, textoRolavel: String) {
+fun TelaGraficoI(estadoJson: String) {
     val context = LocalContext.current
     val server = remember { LocalWebServer(context) }
     var isServerReady by remember { mutableStateOf(false) } // Estado para controlar a inicialização do servidor
@@ -183,7 +181,7 @@ fun TelaGraficoI(estadoJson: String, imagem2: Int, textoRolavel: String) {
         }
     }
 
-    Row(modifier = Modifier.fillMaxSize()) {
+    Box(modifier = Modifier.fillMaxSize()) {
         // WebView para exibir o gráfico
         if (isServerReady) { // Carrega a WebView apenas quando o servidor estiver pronto
             AndroidView(factory = { context ->
@@ -202,32 +200,7 @@ fun TelaGraficoI(estadoJson: String, imagem2: Int, textoRolavel: String) {
                     )
                     loadUrl("http://localhost:12346/grafico.html?json=$estadoJson")
                 }
-            }, modifier = Modifier
-                .weight(0.75f)
-                .fillMaxHeight())
-        }
-
-        // Parte direita com cor sólida e texto
-        Column(
-            modifier = Modifier
-                .weight(0.25f)
-                .fillMaxHeight()
-        ) {
-            Box(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .background(color = Color(0xFF2E7D32)) // Cor verde escuro (lousa)
-                    .border(width = 3.dp, color = Color.Black)
-                    .verticalScroll(rememberScrollState()), // Adiciona rolagem vertical
-                contentAlignment = Alignment.Center
-            ) {
-                Text(
-                    text = textoRolavel,
-                    color = Color.White,
-                    fontSize = 20.sp,
-                    modifier = Modifier.padding(8.dp)
-                )
-            }
+            }, modifier = Modifier.fillMaxSize()) // WebView ocupa a tela inteira
         }
     }
 
@@ -257,8 +230,6 @@ fun PreviewTela2() {
 @Composable
 fun PreviewTelaGraficoI() {
     TelaGraficoI(
-        estadoJson = "DaviEGolias.json",
-        imagem2 = R.drawable.imagem2,
-        textoRolavel = "Texto de exemplo para o gráfico"
+        estadoJson = "DaviEGolias.json"
     )
 }
