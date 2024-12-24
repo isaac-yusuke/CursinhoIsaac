@@ -3,17 +3,15 @@ package com.example.cursinhoisaac
 // Classe para representar os dados dos gráficos
 data class GraficoData(
     val titulo: String,
-    val texto: String,
-    val arquivoJson: String // Adicionamos o nome do arquivo JSON
+    val arquivoJson: String, // Adicionamos o nome do arquivo JSON
+    val videoFileName: String // Nome do arquivo de vídeo
 )
 
 // Lista com os dados dos gráficos
 val graficos = listOf(
     GraficoData(
         titulo = "Divisão",
-        texto = """
-            Divisão - tira o texto?
-        """.trimIndent(),
-        arquivoJson = "Divisao.json"
+        arquivoJson = "Divisao.json",
+        videoFileName = "videoDivisao.mp4"
     )
 )

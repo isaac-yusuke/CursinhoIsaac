@@ -72,7 +72,8 @@ fun EscolinhaApp() {
             // Obtém os dados do gráfico correspondente de Data.kt
             val grafico = graficos.getOrNull(index)
             TelaGraficoI(
-                estadoJson = grafico?.arquivoJson ?: "arquivo_padrao.json"
+                estadoJson = grafico?.arquivoJson ?: "arquivo_padrao.json",
+                videoFileName = "video_padrao.mp4"
             )
         }
     }
@@ -163,7 +164,7 @@ fun Tela2(listaDeBotoes: List<String>, onBotaoClick: (Int) -> Unit) {
 }
 
 @Composable
-fun TelaGraficoI(estadoJson: String) {
+fun TelaGraficoI(estadoJson: String, videoFileName: String) {
     val context = LocalContext.current
     val server = remember { LocalWebServer(context) }
     var isServerReady by remember { mutableStateOf(false) } // Estado para controlar a inicialização do servidor
@@ -202,6 +203,26 @@ fun TelaGraficoI(estadoJson: String) {
                 }
             }, modifier = Modifier.fillMaxSize()) // WebView ocupa a tela inteira
         }
+
+        // Botão no canto inferior direito
+        Button(
+            onClick = {
+                val videoIntent = android.content.Intent(android.content.Intent.ACTION_VIEW).apply {
+                    val videoUri = android.net.Uri.parse("file:///android_asset/$videoFileName")
+                    setDataAndType(videoUri, "video/mp4") // Tipo MIME para vídeos MP4
+                }
+                context.startActivity(videoIntent)
+            },
+            colors = ButtonDefaults.buttonColors(
+                containerColor = Color(0xFF2E7D32), // Cor verde para o botão
+                contentColor = Color.White // Cor do texto
+            ),
+            modifier = Modifier
+                .align(Alignment.BottomEnd) // Alinha o botão no canto inferior direito
+                .padding(16.dp) // Padding para afastar da borda
+        ) {
+            Text(text = "Abrir Vídeo")
+        }
     }
 
     // Stop the server when leaving the composable
@@ -230,6 +251,7 @@ fun PreviewTela2() {
 @Composable
 fun PreviewTelaGraficoI() {
     TelaGraficoI(
-        estadoJson = "DaviEGolias.json"
+        estadoJson = "DaviEGolias.json",
+        videoFileName = "video_padrao.mp4"
     )
 }
