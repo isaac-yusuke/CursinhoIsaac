@@ -13,5 +13,9 @@ val graficos = listOf(
         titulo = "Divisão",
         arquivoJson = "Divisao.json",
         videoUrl = "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+    ),GraficoData(
+        titulo = "Frações",
+        arquivoJson = "Fracoes.json",
+        videoUrl = "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
     )
 )
