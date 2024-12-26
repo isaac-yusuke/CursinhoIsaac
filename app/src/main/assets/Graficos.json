@@ -1,0 +1,85 @@
+{
+  "version": 11,
+  "randomSeed": "299b5abe0a73e1040aacfe8fafd54478",
+  "graph": {
+    "viewport": {
+      "xmin": -7.667819444168636,
+      "ymin": -5.908579704295777,
+      "xmax": 12.332180555831822,
+      "ymax": 10.447676265141082
+    }
+  },
+  "expressions": {
+    "list": [
+      {
+        "type": "text",
+        "id": "121789",
+        "text": "Clique no botão \"Abrir Vídeo\" para ver o tutorial de como usar essa ferramenta"
+      },
+      {
+        "type": "folder",
+        "id": "121797",
+        "title": "Gráficos"
+      },
+      {
+        "type": "expression",
+        "id": "121798",
+        "folderId": "121797",
+        "color": "#2d70b3",
+        "latex": "f\\left(x\\right)=2x-1"
+      },
+      {
+        "type": "expression",
+        "id": "121802",
+        "folderId": "121797",
+        "color": "#2d70b3",
+        "latex": "x_{0}=0.79",
+        "hidden": true
+      },
+      {
+        "type": "expression",
+        "id": "121804",
+        "folderId": "121797",
+        "color": "#6042a6",
+        "latex": "f\\left(x_{0}\\right)"
+      },
+      {
+        "type": "expression",
+        "id": "121818",
+        "folderId": "121797",
+        "color": "#000000",
+        "latex": "y=f\\left(x\\right)"
+      },
+      {
+        "type": "expression",
+        "id": "121801",
+        "folderId": "121797",
+        "color": "#000000",
+        "latex": "\\left(x_{0},f\\left(x_{0}\\right)\\right)",
+        "showLabel": true
+      },
+      {
+        "type": "expression",
+        "id": "121805",
+        "folderId": "121797",
+        "color": "#c74440",
+        "latex": "\\left(6,4\\right)",
+        "showLabel": true,
+        "dragMode": "XY"
+      },
+      {
+        "type": "expression",
+        "id": "121803",
+        "folderId": "121797",
+        "color": "#388c46"
+      },
+      {
+        "type": "expression",
+        "id": "121796",
+        "color": "#c74440"
+      }
+    ]
+  },
+  "includeFunctionParametersInRandomSeed": true,
+  "doNotMigrateMovablePointStyle": true
+}

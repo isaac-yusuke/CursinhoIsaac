@@ -1,0 +1,66 @@
+{
+  "version": 11,
+  "randomSeed": "299b5abe0a73e1040aacfe8fafd54478",
+  "graph": {
+    "viewport": {
+      "xmin": -8.689577641012097,
+      "ymin": -11.390367334984875,
+      "xmax": 11.310422358988362,
+      "ymax": 4.965888634451984
+    }
+  },
+  "expressions": {
+    "list": [
+      {
+        "type": "text",
+        "id": "121789",
+        "text": "Clique no botão \"Abrir Vídeo\" para ver o tutorial de como usar essa ferramenta"
+      },
+      {
+        "type": "folder",
+        "id": "121791",
+        "title": "Funções"
+      },
+      {
+        "type": "expression",
+        "id": "121792",
+        "folderId": "121791",
+        "color": "#2d70b3",
+        "latex": "f\\left(x\\right)=x+1",
+        "hidden": true
+      },
+      {
+        "type": "expression",
+        "id": "121799",
+        "folderId": "121791",
+        "color": "#c74440",
+        "latex": "g\\left(x\\right)=x^{2}",
+        "hidden": true
+      },
+      {
+        "type": "expression",
+        "id": "121795",
+        "folderId": "121791",
+        "color": "#000000",
+        "latex": "a=1",
+        "hidden": true
+      },
+      {
+        "type": "expression",
+        "id": "121793",
+        "folderId": "121791",
+        "color": "#388c46",
+        "latex": "f\\left(a\\right)"
+      },
+      {
+        "type": "expression",
+        "id": "121800",
+        "folderId": "121791",
+        "color": "#2d70b3",
+        "latex": "g\\left(a\\right)"
+      }
+    ]
+  },
+  "includeFunctionParametersInRandomSeed": true,
+  "doNotMigrateMovablePointStyle": true
+}
