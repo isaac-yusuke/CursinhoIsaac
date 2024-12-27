@@ -1,0 +1,94 @@
+{
+  "version": 11,
+  "randomSeed": "299b5abe0a73e1040aacfe8fafd54478",
+  "graph": {
+    "viewport": {
+      "xmin": -7.667819444168636,
+      "ymin": -6.942393623827154,
+      "xmax": 12.332180555831822,
+      "ymax": 11.48149018467246
+    }
+  },
+  "expressions": {
+    "list": [
+      {
+        "type": "text",
+        "id": "121789",
+        "text": "Clique no botão \"Abrir Vídeo\" para ver o tutorial de como usar essa ferramenta"
+      },
+      {
+        "type": "folder",
+        "id": "121797",
+        "title": "Bhaskara"
+      },
+      {
+        "type": "expression",
+        "id": "121798",
+        "folderId": "121797",
+        "color": "#2d70b3",
+        "latex": "f\\left(x\\right)=ax^{2}+bx+c"
+      },
+      {
+        "type": "expression",
+        "id": "121819",
+        "folderId": "121797",
+        "color": "#c74440",
+        "latex": "a=1",
+        "hidden": true
+      },
+      {
+        "type": "expression",
+        "id": "121820",
+        "folderId": "121797",
+        "color": "#2d70b3",
+        "latex": "b=-3",
+        "hidden": true
+      },
+      {
+        "type": "expression",
+        "id": "121821",
+        "folderId": "121797",
+        "color": "#388c46",
+        "latex": "c=2",
+        "hidden": true
+      },
+      {
+        "type": "expression",
+        "id": "121822",
+        "folderId": "121797",
+        "color": "#6042a6",
+        "latex": "d_{elta}=b^{2}-4ac"
+      },
+      {
+        "type": "expression",
+        "id": "121823",
+        "folderId": "121797",
+        "color": "#000000",
+        "latex": "x_{1}=\\frac{-b+\\sqrt{d_{elta}}}{2a}"
+      },
+      {
+        "type": "expression",
+        "id": "121824",
+        "folderId": "121797",
+        "color": "#c74440",
+        "latex": "x_{2}=\\frac{-b-\\sqrt{d_{elta}}}{2a}"
+      },
+      {
+        "type": "expression",
+        "id": "121826",
+        "folderId": "121797",
+        "color": "#388c46",
+        "latex": "f\\left(x_{1}\\right)"
+      },
+      {
+        "type": "expression",
+        "id": "121827",
+        "folderId": "121797",
+        "color": "#6042a6",
+        "latex": "f\\left(x_{2}\\right)"
+      }
+    ]
+  },
+  "includeFunctionParametersInRandomSeed": true,
+  "doNotMigrateMovablePointStyle": true
+}

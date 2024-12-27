@@ -33,5 +33,9 @@ val graficos = listOf(
         titulo = "Equações",
         arquivoJson = "Equacoes.json",
         videoUrl = "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+    ),GraficoData(
+        titulo = "Fórmula de Bhaskara",
+        arquivoJson = "Bhaskara.json",
+        videoUrl = "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
     )
 )
