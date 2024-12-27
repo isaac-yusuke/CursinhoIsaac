@@ -10,6 +10,11 @@ data class GraficoData(
 // Lista com os dados dos gráficos
 val graficos = listOf(
     GraficoData(
+        titulo = "Soma e Subtração",
+        arquivoJson = "SomaESubtracao.json",
+        videoUrl = "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+    ),
+    GraficoData(
         titulo = "Multiplicação",
         arquivoJson = "Multiplicacao.json",
         videoUrl = "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
