@@ -3,10 +3,10 @@
   "randomSeed": "299b5abe0a73e1040aacfe8fafd54478",
   "graph": {
     "viewport": {
-      "xmin": -5.94166671898184,
-      "ymin": -7.4445781601075955,
-      "xmax": 7.141938296234762,
-      "ymax": 4.869614523903635
+      "xmin": -6.652210217083932,
+      "ymin": -11.897752266338493,
+      "xmax": 9.041088474263518,
+      "ymax": 8.656568199384267
     },
     "showGrid": false,
     "showXAxis": false,
@@ -102,7 +102,7 @@
         "id": "121834",
         "folderId": "121041",
         "color": "#6042a6",
-        "latex": "o_{p}=0",
+        "latex": "o_{p}=1",
         "slider": {
           "hardMin": true,
           "hardMax": true,
@@ -290,7 +290,7 @@
         "id": "121912",
         "folderId": "121041",
         "color": "#388c46",
-        "latex": "s_{ub}=1-s_{oma}"
+        "latex": "s_{ub}=\\left(1-s_{oma}\\right)"
       },
       {
         "type": "expression",
@@ -346,7 +346,7 @@
         "id": "121888",
         "folderId": "121041",
         "color": "#6042a6",
-        "latex": "v_{aiumSub}=\\left\\{\\left|v_{aiumSub2}\\right|>0:\\left|v_{aiumSub2}\\right|,0\\right\\}"
+        "latex": "v_{aiumSub}=\\left\\{\\left|v_{aiumSub2}\\right|>0:\\left|v_{aiumSub2}\\right|,0\\right\\}\\left\\{N_{ummax}\\ge20\\right\\}"
       },
       {
         "type": "expression",
