@@ -27,6 +27,10 @@ val graficos = listOf(
         arquivoJson = "Fracoes.json",
         videoUrl = "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
     ),GraficoData(
+        titulo = "Números Decimais",
+        arquivoJson = "NumerosDecimais.json",
+        videoUrl = "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+    ),GraficoData(
         titulo = "Funções",
         arquivoJson = "Funcoes.json",
         videoUrl = "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
