@@ -4,9 +4,9 @@
   "graph": {
     "viewport": {
       "xmin": -11.687970285812582,
-      "ymin": -12.183838422400274,
+      "ymin": -9.540481415017343,
       "xmax": 8.312029714187926,
-      "ymax": 9.45913156180249
+      "ymax": 6.815774554419556
     },
     "showGrid": false,
     "showXAxis": false,
@@ -21,11 +21,6 @@
         "type": "text",
         "id": "121789",
         "text": "Clique no botão \"Abrir Vídeo\" para ver o tutorial de como usar essa ferramenta"
-      },
-      {
-        "type": "text",
-        "id": "121959",
-        "text": "Coloca multiplicação e divisão"
       },
       {
         "type": "expression",
@@ -50,6 +45,11 @@
         "id": "121904",
         "color": "#388c46",
         "latex": "T_{roca}"
+      },
+      {
+        "type": "text",
+        "id": "121959",
+        "text": "Mulitplicação - Soma as casas decimais\nDivisão - Subtrai as casas decimais"
       },
       {
         "type": "folder",
