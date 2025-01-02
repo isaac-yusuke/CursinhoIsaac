@@ -3,10 +3,10 @@
   "randomSeed": "299b5abe0a73e1040aacfe8fafd54478",
   "graph": {
     "viewport": {
-      "xmin": -3.9888798936540972,
-      "ymin": -4.36099160425764,
-      "xmax": 8.325101297137994,
-      "ymax": 6.455983409454317
+      "xmin": -4.8826258842734065,
+      "ymin": -3.682100873066504,
+      "xmax": 6.707003471766256,
+      "ymax": 6.498581492780083
     }
   },
   "expressions": {
@@ -22,11 +22,18 @@
         "title": "Gráficos"
       },
       {
+        "type": "text",
+        "id": "121983",
+        "folderId": "121797",
+        "text": "Horizontal - eixo X\nVertical - eixo Y"
+      },
+      {
         "type": "expression",
         "id": "121805",
         "folderId": "121797",
         "color": "#c74440",
-        "latex": "\\left(1,2\\right)",
+        "latex": "\\left(2,3\\right)",
+        "showLabel": true,
         "dragMode": "XY"
       },
       {
@@ -34,7 +41,7 @@
         "id": "121980",
         "folderId": "121797",
         "color": "#c74440",
-        "latex": "x=1"
+        "latex": "x=-1"
       },
       {
         "type": "expression",
@@ -45,42 +52,17 @@
       },
       {
         "type": "expression",
-        "id": "121798",
-        "folderId": "121797",
-        "color": "#2d70b3",
-        "latex": "f\\left(x\\right)=2x-1",
-        "hidden": true
-      },
-      {
-        "type": "expression",
-        "id": "121802",
-        "folderId": "121797",
-        "color": "#2d70b3",
-        "latex": "x_{0}=0.79",
-        "hidden": true
-      },
-      {
-        "type": "expression",
-        "id": "121804",
+        "id": "121984",
         "folderId": "121797",
         "color": "#6042a6",
-        "latex": "f\\left(x_{0}\\right)"
-      },
-      {
-        "type": "expression",
-        "id": "121801",
-        "folderId": "121797",
-        "color": "#000000",
-        "latex": "\\left(x_{0},f\\left(x_{0}\\right)\\right)",
+        "latex": "y=x+1",
         "hidden": true
       },
       {
         "type": "expression",
-        "id": "121818",
+        "id": "121985",
         "folderId": "121797",
-        "color": "#000000",
-        "latex": "y=f\\left(x\\right)",
-        "hidden": true
+        "color": "#000000"
       },
       {
         "type": "expression",
