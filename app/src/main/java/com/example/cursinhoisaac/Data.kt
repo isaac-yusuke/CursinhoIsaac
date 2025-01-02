@@ -35,7 +35,7 @@ val graficos = listOf(
         arquivoJson = "Funcoes.json",
         videoUrl = "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
     ),GraficoData(
-        titulo = "Gráficos e Plano Cartesiano",
+        titulo = "Plano Cartesiano",
         arquivoJson = "Graficos.json",
         videoUrl = "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
     ),GraficoData(
