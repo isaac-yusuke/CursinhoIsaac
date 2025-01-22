@@ -39,6 +39,10 @@ val graficos = listOf(
         arquivoJson = "Graficos.json",
         videoUrl = "https://www.youtube.com/watch?v=pQ5fXG69J8c"
     ),GraficoData(
+        titulo = "Porcentagem",
+        arquivoJson = "Porcentagem.json",
+        videoUrl = "https://www.youtube.com/watch?v=cxZtKM7R9TQ"
+    ),GraficoData(
         titulo = "Equações",
         arquivoJson = "Equacoes.json",
         videoUrl = "https://www.youtube.com/watch?v=DyxvxXGXB6c"
