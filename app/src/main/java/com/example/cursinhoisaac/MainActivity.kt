@@ -58,7 +58,10 @@ fun EscolinhaApp() {
 
     NavHost(navController, startDestination = "tela1") {
         composable("tela1") {
-            Tela1(onIniciarClick = { navController.navigate("tela2") })
+            Tela1(
+                onIniciarClick = { navController.navigate("tela2") },
+                onInstrucoesClick = { navController.navigate("tela3") }
+            )
         }
         composable("tela2") {
             // Obtém os títulos dos gráficos do arquivo Data.kt
@@ -66,6 +69,9 @@ fun EscolinhaApp() {
                 listaDeBotoes = graficos.map { it.titulo },
                 onBotaoClick = { index -> navController.navigate("grafico/${index - 1}") }
             )
+        }
+        composable("tela3") {
+            Tela3()
         }
         composable("grafico/{index}") { backStackEntry ->
             val index = backStackEntry.arguments?.getString("index")?.toIntOrNull() ?: 0
@@ -81,7 +87,7 @@ fun EscolinhaApp() {
 
 
 @Composable
-fun Tela1(onIniciarClick: () -> Unit) {
+fun Tela1(onIniciarClick: () -> Unit, onInstrucoesClick: () -> Unit) {
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -94,20 +100,41 @@ fun Tela1(onIniciarClick: () -> Unit) {
             contentScale = ContentScale.FillBounds, // Estica a imagem para ocupar todo o espaço
             modifier = Modifier.fillMaxSize()
         )
-        Button(
-            onClick = onIniciarClick,
-            shape = RectangleShape, // Botão quadrado
-            colors = ButtonDefaults.buttonColors(
-                containerColor = Color(0xFF2E7D32), // Cor verde
-                contentColor = Color.White // Cor do texto
-            ),
-            border = BorderStroke(3.dp, Color.Black), // Contorno preto
-            modifier = Modifier.align(Alignment.Center)
+        Column(
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Center,
+            modifier = Modifier.fillMaxSize()
         ) {
-            Text(
-                text = "Iniciar",
-                fontSize = 30.sp // Tamanho da fonte
-            )
+            // Botão "Iniciar"
+            Button(
+                onClick = onIniciarClick,
+                shape = RectangleShape, // Botão quadrado
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = Color(0xFF2E7D32), // Cor verde
+                    contentColor = Color.White // Cor do texto
+                ),
+                border = BorderStroke(3.dp, Color.Black), // Contorno preto
+            ) {
+                Text(
+                    text = "Iniciar",
+                    fontSize = 30.sp // Tamanho da fonte
+                )
+            }
+
+            Spacer(modifier = Modifier.height(16.dp)) // Espaçamento
+
+            // Botão "Instruções"
+            Button(
+                onClick = onInstrucoesClick,
+                shape = RectangleShape,
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = Color(0xFF2E7D32),
+                    contentColor = Color.White
+                ),
+                border = BorderStroke(3.dp, Color.Black)
+            ) {
+                Text(text = "Instruções", fontSize = 30.sp)
+            }
         }
     }
 }
@@ -160,6 +187,69 @@ fun Tela2(listaDeBotoes: List<String>, onBotaoClick: (Int) -> Unit) {
                 }
             }
         }
+    }
+}
+
+@Composable
+fun Tela3() {
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(color = Color(0xFF2E7D32)), // Fundo verde escuro
+        contentAlignment = Alignment.Center
+    ) {
+        // Imagem de fundo
+        Image(
+            painter = rememberImagePainter(R.drawable.imagem1),
+            contentDescription = "Fundo",
+            contentScale = ContentScale.FillBounds,
+            modifier = Modifier.fillMaxSize()
+        )
+
+        // Retângulo centralizado
+        Box(
+            modifier = Modifier
+                .fillMaxWidth(0.9f)
+                .fillMaxHeight(0.9f)
+                .background(color = Color(0xFF2E7D32)) // Cor do retângulo
+                .border(width = 3.dp, color = Color.Black), // Borda preta
+            contentAlignment = Alignment.Center // Centraliza o texto
+        ) {
+            LazyColumn(
+                modifier = Modifier.padding(20.dp) // Adiciona padding em toda a coluna
+                , horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                item {
+                    Text(
+                        text = "INSTRUÇÕES",
+                        color = Color.White,
+                        fontSize = 40.sp,
+                        textAlign = TextAlign.Center,
+                        modifier = Modifier.padding(bottom = 20.dp) // Espaçamento inferior
+                    )
+                }
+                item {
+                    Text(
+                        text = """          
+                            Arraste a tela para ler até o final
+                            - Na tela inicial, clique no botão "Iniciar" para ver a lista de conteúdos
+                            - Escolha um conteúdo e clique no botão
+                            - Ele irá abrir uma ferramenta preparada para ajudar no aprendizado daquele assunto
+                            - No canto direito superior haverá um botão que abre um vídeo no Youtube explicando como usar aquela ferramenta
+                            - Veja o vídeo para uma breve explicação do assunto e de como usar a ferramenta
+                            - Em cada ferramenta, você pode editar as variáveis e equações no lado esquerdo da tela para mudar os números
+                            - Para retornar ao estado original, basta voltar na tela anterior e abrir novamente a ferramenta 
+                            - Teste exemplos diferentes em cada aula para exercitar! Tente resolver as contas no papel e compare os resultados!
+                            """.trimIndent(),
+                        color = Color.White,
+                        fontSize = 25.sp,
+                        textAlign = TextAlign.Justify,
+                        lineHeight = 35.sp
+                    )
+                }
+            }
+        }
+
     }
 }
 
@@ -236,7 +326,10 @@ fun TelaGraficoI(estadoJson: String, videoUrl: String) {
 @Preview(showBackground = true)
 @Composable
 fun PreviewTela1() {
-    Tela1(onIniciarClick = {})
+    Tela1(
+        onIniciarClick = {},
+        onInstrucoesClick = {}
+    )
 }
 
 @Preview(showBackground = true)
