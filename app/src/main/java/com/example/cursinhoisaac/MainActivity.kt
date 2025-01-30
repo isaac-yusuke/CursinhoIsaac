@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.webkit.WebSettings
 import android.webkit.WebView
 import android.webkit.WebViewClient
+import android.widget.LinearLayout
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.annotation.OptIn
@@ -72,7 +73,8 @@ fun EscolinhaApp() {
         composable("tela1") {
             Tela1(
                 onIniciarClick = { navController.navigate("tela2") },
-                onInstrucoesClick = { navController.navigate("tela3") }
+                onInstrucoesClick = { navController.navigate("tela3") },
+                onReverVideoClick = { navController.navigate("telaVideo") } // Exibe o vídeo ao clicar na imagem3
             )
         }
         composable("tela2") {
@@ -142,7 +144,7 @@ fun TelaVideo(navController: NavController) {
 
 
 @Composable
-fun Tela1(onIniciarClick: () -> Unit, onInstrucoesClick: () -> Unit) {
+fun Tela1(onIniciarClick: () -> Unit, onInstrucoesClick: () -> Unit, onReverVideoClick: () -> Unit) {
     val context = LocalContext.current
 
     Box(
@@ -205,6 +207,17 @@ fun Tela1(onIniciarClick: () -> Unit, onInstrucoesClick: () -> Unit) {
                     val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://chat.whatsapp.com/LmQd9eHCqRu85Htdu143Ht"))
                     context.startActivity(intent)
                 }
+        )
+
+        // Nova imagem no canto superior esquerdo (imagem3) - Reproduzir vídeo de introdução
+        Image(
+            painter = rememberImagePainter(R.drawable.imagem3),
+            contentDescription = "Rever Vídeo",
+            modifier = Modifier
+                .size(110.dp)
+                .align(Alignment.TopStart)
+                .padding(16.dp)
+                .clickable { onReverVideoClick() } // Chama a função para exibir o vídeo
         )
 
         // Texto "versão 1.x" no canto inferior esquerdo
@@ -366,9 +379,9 @@ fun TelaGraficoI(estadoJson: String, videoUrl: String) {
                     settings.allowContentAccess = true
                     settings.layoutAlgorithm = WebSettings.LayoutAlgorithm.TEXT_AUTOSIZING
                     webViewClient = WebViewClient()
-                    layoutParams = android.widget.LinearLayout.LayoutParams(
-                        android.widget.LinearLayout.LayoutParams.MATCH_PARENT,
-                        android.widget.LinearLayout.LayoutParams.MATCH_PARENT
+                    layoutParams = LinearLayout.LayoutParams(
+                        LinearLayout.LayoutParams.MATCH_PARENT,
+                        LinearLayout.LayoutParams.MATCH_PARENT
                     )
                     loadUrl("http://localhost:12346/grafico.html?json=$estadoJson")
                 }
@@ -378,8 +391,8 @@ fun TelaGraficoI(estadoJson: String, videoUrl: String) {
         // Botão no canto inferior direito
         Button(
             onClick = {
-                val intent = android.content.Intent(android.content.Intent.ACTION_VIEW).apply {
-                    data = android.net.Uri.parse(videoUrl) // Define a URL do vídeo
+                val intent = Intent(Intent.ACTION_VIEW).apply {
+                    data = Uri.parse(videoUrl) // Define a URL do vídeo
                 }
                 context.startActivity(intent)
             },
@@ -409,7 +422,8 @@ fun TelaGraficoI(estadoJson: String, videoUrl: String) {
 fun PreviewTela1() {
     Tela1(
         onIniciarClick = {},
-        onInstrucoesClick = {}
+        onInstrucoesClick = {},
+        onReverVideoClick = {}
     )
 }
 
