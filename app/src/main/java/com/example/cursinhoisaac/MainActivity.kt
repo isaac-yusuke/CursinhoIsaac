@@ -1,5 +1,7 @@
 package com.example.cursinhoisaac
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.webkit.WebSettings
 import android.webkit.WebView
@@ -10,6 +12,7 @@ import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
@@ -88,10 +91,12 @@ fun EscolinhaApp() {
 
 @Composable
 fun Tela1(onIniciarClick: () -> Unit, onInstrucoesClick: () -> Unit) {
+    val context = LocalContext.current
+
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(color = Color(0xFF2E7D32)) // Cor verde escuro de fundo
+            .background(color = Color(0xFF2E7D32)) // Fundo verde escuro
     ) {
         // Imagem de fundo
         Image(
@@ -100,6 +105,8 @@ fun Tela1(onIniciarClick: () -> Unit, onInstrucoesClick: () -> Unit) {
             contentScale = ContentScale.FillBounds, // Estica a imagem para ocupar todo o espaço
             modifier = Modifier.fillMaxSize()
         )
+
+        // Coluna centralizada para os botões
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center,
@@ -108,17 +115,14 @@ fun Tela1(onIniciarClick: () -> Unit, onInstrucoesClick: () -> Unit) {
             // Botão "Iniciar"
             Button(
                 onClick = onIniciarClick,
-                shape = RectangleShape, // Botão quadrado
+                shape = RectangleShape,
                 colors = ButtonDefaults.buttonColors(
-                    containerColor = Color(0xFF2E7D32), // Cor verde
-                    contentColor = Color.White // Cor do texto
+                    containerColor = Color(0xFF2E7D32), // Verde
+                    contentColor = Color.White // Texto branco
                 ),
-                border = BorderStroke(3.dp, Color.Black), // Contorno preto
+                border = BorderStroke(3.dp, Color.Black)
             ) {
-                Text(
-                    text = "Iniciar",
-                    fontSize = 30.sp // Tamanho da fonte
-                )
+                Text(text = "Iniciar", fontSize = 30.sp)
             }
 
             Spacer(modifier = Modifier.height(16.dp)) // Espaçamento
@@ -136,6 +140,30 @@ fun Tela1(onIniciarClick: () -> Unit, onInstrucoesClick: () -> Unit) {
                 Text(text = "Instruções", fontSize = 30.sp)
             }
         }
+
+        // Imagem pequena no canto inferior direito
+        Image(
+            painter = rememberImagePainter(R.drawable.imagem2),
+            contentDescription = "Ícone Link",
+            modifier = Modifier
+                .size(110.dp) // Tamanho da imagem pequena
+                .align(Alignment.BottomEnd) // Alinha no canto inferior direito
+                .padding(16.dp) // Espaçamento da borda
+                .clickable {
+                    val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://chat.whatsapp.com/LmQd9eHCqRu85Htdu143Ht"))
+                    context.startActivity(intent)
+                }
+        )
+
+        // Texto "versão 1.x" no canto inferior esquerdo
+        Text(
+            text = "Versão 1.3",
+            color = Color.White,
+            fontSize = 18.sp,
+            modifier = Modifier
+                .align(Alignment.BottomStart) // Alinha no canto inferior esquerdo
+                .padding(16.dp) // Espaçamento da borda
+        )
     }
 }
 
@@ -240,6 +268,7 @@ fun Tela3() {
                             - Em cada ferramenta, você pode editar as variáveis e equações no lado esquerdo da tela para mudar os números
                             - Para retornar ao estado original, basta voltar na tela anterior e abrir novamente a ferramenta 
                             - Teste exemplos diferentes em cada aula para exercitar! Tente resolver as contas no papel e compare os resultados!
+                            - Clique no ícone do Whatsapp no canto direito da tela inicial para entrar no nosso grupo e receber todas as atualizações!
                             """.trimIndent(),
                         color = Color.White,
                         fontSize = 25.sp,
