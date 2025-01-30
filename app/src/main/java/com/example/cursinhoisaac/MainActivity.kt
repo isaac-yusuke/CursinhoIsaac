@@ -8,6 +8,7 @@ import android.webkit.WebView
 import android.webkit.WebViewClient
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.annotation.OptIn
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -43,6 +44,13 @@ import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.sp
+import androidx.media3.common.MediaItem
+import androidx.media3.common.Player
+import androidx.media3.common.util.UnstableApi
+import androidx.media3.exoplayer.ExoPlayer
+import androidx.media3.ui.AspectRatioFrameLayout
+import androidx.media3.ui.PlayerView
+import androidx.navigation.NavController
 import kotlinx.coroutines.*
 
 
@@ -59,7 +67,8 @@ class MainActivity : ComponentActivity() {
 fun EscolinhaApp() {
     val navController = rememberNavController()
 
-    NavHost(navController, startDestination = "tela1") {
+    NavHost(navController, startDestination = "telaVideo") {
+        composable("telaVideo") { TelaVideo(navController) }
         composable("tela1") {
             Tela1(
                 onIniciarClick = { navController.navigate("tela2") },
@@ -84,6 +93,49 @@ fun EscolinhaApp() {
                 estadoJson = grafico?.arquivoJson ?: "arquivo_padrao.json",
                 videoUrl = grafico?.videoUrl ?: "https://www.youtube.com/watch?v=dQw4w9WgXcQ" // URL padrão
             )
+        }
+    }
+}
+
+@OptIn(UnstableApi::class)
+@Composable
+fun TelaVideo(navController: NavController) {
+    val context = LocalContext.current
+    val videoUri = "android.resource://${context.packageName}/raw/intro" // Caminho do vídeo
+    val exoPlayer = remember {
+        ExoPlayer.Builder(context).build().apply {
+            val mediaItem = MediaItem.fromUri(Uri.parse(videoUri))
+            setMediaItem(mediaItem)
+            prepare()
+            playWhenReady = true // Reproduz automaticamente
+        }
+    }
+
+    // Monitora o fim do vídeo para trocar para Tela1
+    LaunchedEffect(exoPlayer) {
+        exoPlayer.addListener(object : Player.Listener {
+            override fun onPlaybackStateChanged(state: Int) {
+                if (state == Player.STATE_ENDED) {
+                    navController.navigate("tela1") { popUpTo("telaVideo") { inclusive = true } }
+                }
+            }
+        })
+    }
+
+    AndroidView(
+        factory = { context ->
+            PlayerView(context).apply {
+                player = exoPlayer
+                useController = false // Remove botões de controle
+                resizeMode = AspectRatioFrameLayout.RESIZE_MODE_FILL // Estica para ocupar a tela
+            }
+        },
+        modifier = Modifier.fillMaxSize()
+    )
+
+    DisposableEffect(Unit) {
+        onDispose {
+            exoPlayer.release()
         }
     }
 }
