@@ -222,7 +222,7 @@ fun Tela1(onIniciarClick: () -> Unit, onInstrucoesClick: () -> Unit, onReverVide
 
         // Texto "versão 1.x" no canto inferior esquerdo
         Text(
-            text = "Versão 1.3",
+            text = "Versão 1.4",
             color = Color.White,
             fontSize = 18.sp,
             modifier = Modifier
