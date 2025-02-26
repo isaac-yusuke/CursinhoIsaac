@@ -55,6 +55,10 @@ val graficos = listOf(
         arquivoJson = "Potencia.json",
         videoUrl = "https://www.youtube.com/watch?v=RzCwiKZJo6o"
     ),GraficoData(
+        titulo = "Notação Científica",
+        arquivoJson = "NotacaoCientifica.json",
+        videoUrl = "https://www.youtube.com/watch?v=MSgnl_S1PHc"
+    ),GraficoData(
         titulo = "Fórmula de Bhaskara",
         arquivoJson = "Bhaskara.json",
         videoUrl = "https://www.youtube.com/watch?v=u2D-pgco1h0"
