@@ -5,15 +5,15 @@ plugins {
 }
 
 android {
-    namespace = "com.example.cursinhoisaac"
+    namespace = "br.isaacyyanagui.cursinhoisaac"
     compileSdk = 35
 
     defaultConfig {
-        applicationId = "com.example.cursinhoisaac"
+        applicationId = "br.isaacyyanagui.cursinhoisaac"
         minSdk = 24
-        targetSdk = 34
-        versionCode = 1
-        versionName = "1.0"
+        targetSdk = 35
+        versionCode = 1      //Tem que mudar sempre que fizer nova versao
+        versionName = "1.0"  //Tem que mudar sempre que fizer nova versao
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
