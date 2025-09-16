@@ -332,7 +332,6 @@ fun Tela3() {
                             - Em cada ferramenta, você pode editar as variáveis e equações no lado esquerdo da tela para mudar os números
                             - Para retornar ao estado original, basta voltar na tela anterior e abrir novamente a ferramenta 
                             - Teste exemplos diferentes em cada aula para exercitar! Tente resolver as contas no papel e compare os resultados!
-                            - Clique no ícone do Whatsapp no canto direito da tela inicial para entrar no nosso grupo e receber todas as atualizações!
                             """.trimIndent(),
                         color = Color.White,
                         fontSize = 25.sp,
