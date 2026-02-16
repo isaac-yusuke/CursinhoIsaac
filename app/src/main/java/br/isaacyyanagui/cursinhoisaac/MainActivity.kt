@@ -92,7 +92,8 @@ fun EscolinhaApp() {
             val grafico = graficos.getOrNull(index)
             TelaGraficoI(  // visualização dos gráficos
                 estadoJson = grafico?.arquivoJson ?: "arquivo_padrao.json",
-                videoUrl = grafico?.videoUrl ?: "https://www.youtube.com/watch?v=dQw4w9WgXcQ" // URL padrão
+                videoUrl = grafico?.videoUrl ?: "https://www.youtube.com/watch?v=dQw4w9WgXcQ", // URL padrão
+                texto = grafico?.texto ?: ""
             )
         }
     }
@@ -361,7 +362,7 @@ fun Tela3() {
 }
 
 @Composable  // tela que mostra os gráficos
-fun TelaGraficoI(estadoJson: String, videoUrl: String) {
+fun TelaGraficoI(estadoJson: String, videoUrl: String, texto: String) {
     val context = LocalContext.current
     val server = remember { LocalWebServer(context) }
     var isServerReady by remember { mutableStateOf(false) } // Estado para controlar a inicialização do servidor
@@ -379,48 +380,72 @@ fun TelaGraficoI(estadoJson: String, videoUrl: String) {
         }
     }
 
-    Box(modifier = Modifier.fillMaxSize()
-                            .padding(
-                                end = WindowInsets.navigationBars.asPaddingValues().calculateEndPadding(LayoutDirection.Ltr)
-                            )) {
-        // WebView para exibir o gráfico
-        if (isServerReady) { // Carrega a WebView apenas quando o servidor estiver pronto
-            AndroidView(factory = { context ->
-                WebView(context).apply {
-                    settings.javaScriptEnabled = true
-                    settings.domStorageEnabled = true
-                    settings.loadWithOverviewMode = true
-                    settings.useWideViewPort = true
-                    settings.allowFileAccess = true
-                    settings.allowContentAccess = true
-                    settings.layoutAlgorithm = WebSettings.LayoutAlgorithm.TEXT_AUTOSIZING
-                    webViewClient = WebViewClient()
-                    layoutParams = LinearLayout.LayoutParams(
-                        LinearLayout.LayoutParams.MATCH_PARENT,
-                        LinearLayout.LayoutParams.MATCH_PARENT
-                    )
-                    loadUrl("http://localhost:12346/grafico.html?json=$estadoJson")
-                }
-            }, modifier = Modifier.fillMaxSize()) // WebView ocupa a tela inteira
+    Row(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(
+                end = WindowInsets.navigationBars.asPaddingValues().calculateEndPadding(LayoutDirection.Ltr)
+            )
+    ) {
+        Box(
+            modifier = Modifier
+                .weight(0.75f)
+                .fillMaxHeight()
+        ) {
+            // WebView para exibir o gráfico
+            if (isServerReady) { // Carrega a WebView apenas quando o servidor estiver pronto
+                AndroidView(factory = { context ->
+                    WebView(context).apply {
+                        settings.javaScriptEnabled = true
+                        settings.domStorageEnabled = true
+                        settings.loadWithOverviewMode = true
+                        settings.useWideViewPort = true
+                        settings.allowFileAccess = true
+                        settings.allowContentAccess = true
+                        settings.layoutAlgorithm = WebSettings.LayoutAlgorithm.TEXT_AUTOSIZING
+                        webViewClient = WebViewClient()
+                        layoutParams = LinearLayout.LayoutParams(
+                            LinearLayout.LayoutParams.MATCH_PARENT,
+                            LinearLayout.LayoutParams.MATCH_PARENT
+                        )
+                        loadUrl("http://localhost:12346/grafico.html?json=$estadoJson")
+                    }
+                }, modifier = Modifier.fillMaxSize())
+            }
         }
 
-        // Botão no canto superior direito
-        Button(
-            onClick = {
-                val intent = Intent(Intent.ACTION_VIEW).apply {
-                    data = Uri.parse(videoUrl) // Define a URL do vídeo
-                }
-                context.startActivity(intent)
-            },
-            colors = ButtonDefaults.buttonColors(
-                containerColor = Color(0xFF2E7D32), // Cor verde para o botão
-                contentColor = Color.White // Cor do texto
-            ),
+        Column(
             modifier = Modifier
-                .align(Alignment.TopEnd) // Alinha o botão no canto superior direito
-                .padding(16.dp) // Padding para afastar da borda
+                .weight(0.25f)
+                .fillMaxHeight()
+                .background(Color(0xFF2E7D32))
+                .padding(16.dp),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Center
         ) {
-            Text(text = "Abrir Vídeo")
+            Text(
+                text = texto,
+                color = Color.White,
+                fontSize = 22.sp,
+                textAlign = TextAlign.Center
+            )
+
+            Spacer(modifier = Modifier.height(20.dp))
+
+            Button(
+                onClick = {
+                    val intent = Intent(Intent.ACTION_VIEW).apply {
+                        data = Uri.parse(videoUrl) // Define a URL do vídeo
+                    }
+                    context.startActivity(intent)
+                },
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = Color(0xFF1B5E20),
+                    contentColor = Color.White
+                )
+            ) {
+                Text(text = "Abrir Vídeo")
+            }
         }
     }
 
@@ -455,6 +480,7 @@ fun PreviewTela2() {
 fun PreviewTelaGraficoI() {
     TelaGraficoI(
         estadoJson = "DaviEGolias.json",
-        videoUrl = "https://www.youtube.com/watch?v=dQw4w9WgXcQ" // URL padrão
+        videoUrl = "https://www.youtube.com/watch?v=dQw4w9WgXcQ", // URL padrão
+        texto = "Texto de exemplo"
     )
 }
