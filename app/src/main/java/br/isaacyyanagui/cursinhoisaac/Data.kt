@@ -41,12 +41,12 @@ val graficos = listOf(
         arquivoJson = "RegraDe3.json",
         videoUrl = "https://www.youtube.com/watch?v=9-lvGVBR3WA",
         texto = "Regra de 3\n\nExperimente proporções para identificar relações diretas e inversas."
-    ), GraficoData(
+    ),/* GraficoData(
         titulo = "Funções",
         arquivoJson = "Funcoes.json",
         videoUrl = "https://www.youtube.com/watch?v=m1VcsycXkwM",
         texto = "Funções\n\nAltere parâmetros para perceber como o gráfico da função se transforma."
-    ), GraficoData(
+    ),*/ GraficoData(
         titulo = "Plano Cartesiano",
         arquivoJson = "Graficos.json",
         videoUrl = "https://www.youtube.com/watch?v=pQ5fXG69J8c",
@@ -56,12 +56,12 @@ val graficos = listOf(
         arquivoJson = "Porcentagem.json",
         videoUrl = "https://www.youtube.com/watch?v=cxZtKM7R9TQ",
         texto = "Porcentagem\n\nCompare percentuais em diferentes contextos e veja os resultados instantaneamente."
-    ), GraficoData(
+    ),/* GraficoData(
         titulo = "Equações",
         arquivoJson = "Equacoes.json",
         videoUrl = "https://www.youtube.com/watch?v=DyxvxXGXB6c",
         texto = "Equações\n\nAjuste os termos para praticar resolução e interpretação de incógnitas."
-    ), GraficoData(
+    ),*/ GraficoData(
         titulo = "Potência e Raíz Quadrada",
         arquivoJson = "Potencia.json",
         videoUrl = "https://www.youtube.com/watch?v=RzCwiKZJo6o",
