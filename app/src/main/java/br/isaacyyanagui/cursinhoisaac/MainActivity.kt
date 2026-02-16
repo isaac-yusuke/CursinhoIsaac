@@ -404,7 +404,7 @@ fun TelaGraficoI(estadoJson: String, videoUrl: String) {
             }, modifier = Modifier.fillMaxSize()) // WebView ocupa a tela inteira
         }
 
-        // Botão no canto inferior direito
+        // Botão no canto superior direito
         Button(
             onClick = {
                 val intent = Intent(Intent.ACTION_VIEW).apply {
