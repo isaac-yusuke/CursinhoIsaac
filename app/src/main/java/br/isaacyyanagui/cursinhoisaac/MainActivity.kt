@@ -70,7 +70,7 @@ fun EscolinhaApp() {
     NavHost(navController, startDestination = "telaVideo") {
         composable("telaVideo") { TelaVideo(navController) }
         composable("tela1") {
-            Tela1(
+            Tela1(  // Tela inicial
                 onIniciarClick = { navController.navigate("tela2") },
                 onInstrucoesClick = { navController.navigate("tela3") },
                 onReverVideoClick = { navController.navigate("telaVideo") } // Exibe o vídeo ao clicar na imagem3
@@ -78,19 +78,19 @@ fun EscolinhaApp() {
         }
         composable("tela2") {
             // Obtém os títulos dos gráficos do arquivo Data.kt
-            Tela2(
+            Tela2(  // Lista de graficos
                 listaDeBotoes = graficos.map { it.titulo },
                 onBotaoClick = { index -> navController.navigate("grafico/${index - 1}") }
             )
         }
         composable("tela3") {
-            Tela3()
+            Tela3() // tela de instruções
         }
         composable("grafico/{index}") { backStackEntry ->
             val index = backStackEntry.arguments?.getString("index")?.toIntOrNull() ?: 0
             // Obtém os dados do gráfico correspondente de Data.kt
             val grafico = graficos.getOrNull(index)
-            TelaGraficoI(
+            TelaGraficoI(  // visualização dos gráficos
                 estadoJson = grafico?.arquivoJson ?: "arquivo_padrao.json",
                 videoUrl = grafico?.videoUrl ?: "https://www.youtube.com/watch?v=dQw4w9WgXcQ" // URL padrão
             )
@@ -145,7 +145,7 @@ fun TelaVideo(navController: NavController) {
 }
 
 
-@Composable
+@Composable // Tela inicial
 fun Tela1(onIniciarClick: () -> Unit, onInstrucoesClick: () -> Unit, onReverVideoClick: () -> Unit) {
     val context = LocalContext.current
 
@@ -240,7 +240,7 @@ fun Tela1(onIniciarClick: () -> Unit, onInstrucoesClick: () -> Unit, onReverVide
     }
 }
 
-@Composable
+@Composable // lista de gráficos
 fun Tela2(listaDeBotoes: List<String>, onBotaoClick: (Int) -> Unit) {
     Box(
         modifier = Modifier
@@ -294,7 +294,7 @@ fun Tela2(listaDeBotoes: List<String>, onBotaoClick: (Int) -> Unit) {
     }
 }
 
-@Composable
+@Composable // Tela de instruções
 fun Tela3() {
     Box(
         modifier = Modifier
@@ -360,7 +360,7 @@ fun Tela3() {
     }
 }
 
-@Composable
+@Composable  // tela que mostra os gráficos
 fun TelaGraficoI(estadoJson: String, videoUrl: String) {
     val context = LocalContext.current
     val server = remember { LocalWebServer(context) }
