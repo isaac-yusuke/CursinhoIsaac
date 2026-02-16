@@ -4,17 +4,36 @@
   "graph": {
     "viewport": {
       "xmin": -7.667819444168636,
-      "ymin": -6.942393623827154,
+      "ymin": -6.700116991544081,
       "xmax": 12.332180555831822,
-      "ymax": 11.48149018467246
+      "ymax": 11.239213552389387
+    },
+    "__v12ViewportLatexStash": {
+      "xmin": "-7.667819444168636",
+      "xmax": "12.332180555831822",
+      "ymin": "-6.700116991544081",
+      "ymax": "11.239213552389387"
     }
   },
   "expressions": {
     "list": [
       {
-        "type": "text",
-        "id": "121789",
-        "text": "Clique no botão \"Abrir Vídeo\" para ver o tutorial de como usar essa ferramenta"
+        "type": "expression",
+        "id": "num1",
+        "color": "#c74440",
+        "latex": "N_{um1}=1"
+      },
+      {
+        "type": "expression",
+        "id": "num2",
+        "color": "#2d70b3",
+        "latex": "N_{um2}=1"
+      },
+      {
+        "type": "expression",
+        "id": "num3",
+        "color": "#388c46",
+        "latex": "N_{um3}=1"
       },
       {
         "type": "folder",
@@ -33,7 +52,7 @@
         "id": "121819",
         "folderId": "121797",
         "color": "#c74440",
-        "latex": "a=1",
+        "latex": "a=N_{um1}",
         "hidden": true
       },
       {
@@ -41,7 +60,7 @@
         "id": "121820",
         "folderId": "121797",
         "color": "#2d70b3",
-        "latex": "b=-3",
+        "latex": "b=N_{um2}",
         "hidden": true
       },
       {
@@ -49,7 +68,7 @@
         "id": "121821",
         "folderId": "121797",
         "color": "#388c46",
-        "latex": "c=2",
+        "latex": "c=N_{um3}",
         "hidden": true
       },
       {

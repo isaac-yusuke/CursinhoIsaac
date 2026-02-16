@@ -4,29 +4,48 @@
   "graph": {
     "viewport": {
       "xmin": -3.4989686287116504,
-      "ymin": -6.062052806197033,
+      "ymin": -5.938119100611813,
       "xmax": 10.402361699956003,
-      "ymax": 6.654842593291938
+      "ymax": 6.530908887706717
     },
     "showGrid": false,
     "showXAxis": false,
     "showYAxis": false,
     "xAxisNumbers": false,
     "yAxisNumbers": false,
-    "polarNumbers": false
+    "polarNumbers": false,
+    "__v12ViewportLatexStash": {
+      "xmin": "-3.4989686287116504",
+      "xmax": "10.402361699956003",
+      "ymin": "-5.938119100611813",
+      "ymax": "6.530908887706717"
+    }
   },
   "expressions": {
     "list": [
       {
-        "type": "text",
-        "id": "121789",
-        "text": "Clique no botão \"Abrir Vídeo\" para ver o tutorial de como usar essa ferramenta"
+        "type": "expression",
+        "id": "num1",
+        "color": "#2d70b3",
+        "latex": "N_{um1}=1",
+        "slider": {
+          "step": "1"
+        }
+      },
+      {
+        "type": "expression",
+        "id": "num2",
+        "color": "#388c46",
+        "latex": "N_{um2}=1",
+        "slider": {
+          "step": "1"
+        }
       },
       {
         "type": "expression",
         "id": "121094",
         "color": "#c74440",
-        "latex": "B_{ase}=2",
+        "latex": "B_{ase}=N_{um1}",
         "slider": {
           "hardMin": true,
           "min": "1",
@@ -37,7 +56,7 @@
         "type": "expression",
         "id": "121096",
         "color": "#c74440",
-        "latex": "E_{xpoente}=5",
+        "latex": "E_{xpoente}=N_{um2}",
         "slider": {
           "hardMin": true,
           "hardMax": true,

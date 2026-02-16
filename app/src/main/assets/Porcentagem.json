@@ -4,28 +4,36 @@
   "graph": {
     "viewport": {
       "xmin": -9.647581264510183,
-      "ymin": -9.649569825890092,
+      "ymin": -8.413721554691692,
       "xmax": 14.341676547990758,
-      "ymax": 14.33968798661085
+      "ymax": 13.10383971541245
     },
     "showGrid": false,
     "showXAxis": false,
     "showYAxis": false,
     "xAxisNumbers": false,
     "yAxisNumbers": false,
-    "polarNumbers": false
+    "polarNumbers": false,
+    "__v12ViewportLatexStash": {
+      "xmin": "-9.647581264510183",
+      "xmax": "14.341676547990758",
+      "ymin": "-8.413721554691692",
+      "ymax": "13.10383971541245"
+    }
   },
   "expressions": {
     "list": [
       {
-        "type": "text",
-        "id": "120108",
-        "text": "Clique no botão \"Abrir Vídeo\" para ver o tutorial de como usar essa ferramenta"
+        "type": "expression",
+        "id": "num1",
+        "color": "#2d70b3",
+        "latex": "N_{um1}=1"
       },
       {
-        "type": "text",
-        "id": "121831",
-        "text": "Porcentagem\nPor cem  \nDivide por 100"
+        "type": "expression",
+        "id": "num2",
+        "color": "#388c46",
+        "latex": "N_{um2}=1"
       },
       {
         "type": "folder",
@@ -37,7 +45,7 @@
         "id": "121572",
         "folderId": "121571",
         "color": "#388c46",
-        "latex": "T_{otal}=50",
+        "latex": "T_{otal}=N_{um1}",
         "slider": {
           "hardMin": true,
           "min": "0",
@@ -50,7 +58,7 @@
         "id": "121573",
         "folderId": "121571",
         "color": "#6042a6",
-        "latex": "p_{orcentagem}=100",
+        "latex": "p_{orcentagem}=N_{um2}",
         "slider": {
           "hardMin": true,
           "hardMax": true,
