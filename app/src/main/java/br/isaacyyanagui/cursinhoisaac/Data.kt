@@ -93,7 +93,7 @@ val graficos = listOf(
         arquivoJson = "NotacaoCientifica.json",
         videoUrl = "https://www.youtube.com/watch?v=MSgnl_S1PHc",
         texto = "Notação Científica\n\nDigite até 2 números para calcular a notação científica.",
-        listaParametros = listOf("a", "b")
+        listaParametros = listOf("Número 1", "Número 2")
     ),
     GraficoData(
         titulo = "Fórmula de Bhaskara",
