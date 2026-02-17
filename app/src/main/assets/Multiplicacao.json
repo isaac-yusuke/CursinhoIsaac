@@ -49,7 +49,7 @@
         "type": "expression",
         "id": "121097",
         "color": "#c74440",
-        "latex": "R_{esultado}=N_{um1}\\cdot N_{um2}"
+        "latex": "R_{esultado}=\\operatorname{floor}\\left(N_{um1}\\right)\\cdot \\operatorname{floor}\\left(N_{um2}\\right)"
       },
       {
         "type": "folder",

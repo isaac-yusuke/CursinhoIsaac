@@ -216,7 +216,7 @@
         "id": "121839",
         "folderId": "121041",
         "color": "#388c46",
-        "latex": "R_{esultado}=\\left\\{o_{p}=0:N_{um1}+N_{um2},\\ N_{um1}-N_{um2}\\right\\}"
+        "latex": "R_{esultado}=\\left\\{o_{p}=0:\\operatorname{floor}\\left(N_{um1}\\right)+\\operatorname{floor}\\left(N_{um2}\\right),\\ \\operatorname{floor}\\left(N_{um1}\\right)-\\operatorname{floor}\\left(N_{um2}\\right)\\right\\}"
       },
       {
         "type": "expression",

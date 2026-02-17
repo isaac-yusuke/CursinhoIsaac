@@ -57,7 +57,7 @@
         "id": "121573",
         "folderId": "121699",
         "color": "#000000",
-        "latex": "N_{umerador1}=N_{um1}",
+        "latex": "N_{umerador1}=\\operatorname{floor}\\left(N_{um1}\\right)",
         "slider": {
           "step": "1"
         }
@@ -67,7 +67,7 @@
         "id": "121627",
         "folderId": "121699",
         "color": "#000000",
-        "latex": "D_{enominador1}=N_{um2}",
+        "latex": "D_{enominador1}=\\operatorname{floor}\\left(N_{um2}\\right)",
         "slider": {
           "step": "1"
         }
@@ -77,7 +77,7 @@
         "id": "121626",
         "folderId": "121699",
         "color": "#000000",
-        "latex": "N_{umerador2}=N_{um3}",
+        "latex": "N_{umerador2}=\\operatorname{floor}\\left(N_{um3}\\right)",
         "slider": {
           "step": "1"
         }
@@ -87,7 +87,7 @@
         "id": "121625",
         "folderId": "121699",
         "color": "#000000",
-        "latex": "D_{enominador2}=N_{um4}",
+        "latex": "D_{enominador2}=\\operatorname{floor}\\left(N_{um4}\\right)",
         "slider": {
           "step": "1"
         }

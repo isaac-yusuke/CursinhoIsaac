@@ -39,7 +39,7 @@
         "type": "expression",
         "id": "121030",
         "color": "#388c46",
-        "latex": "D_{ividendoInicial}=N_{um1}",
+        "latex": "D_{ividendoInicial}=\\operatorname{floor}\\left(N_{um1}\\right)",
         "slider": {
           "hardMin": true,
           "min": "0",
@@ -51,7 +51,7 @@
         "type": "expression",
         "id": "121003",
         "color": "#c74440",
-        "latex": "D_{ivisor}=N_{um2}",
+        "latex": "D_{ivisor}=\\operatorname{floor}\\left(N_{um2}\\right)",
         "slider": {
           "hardMin": true,
           "min": "1",

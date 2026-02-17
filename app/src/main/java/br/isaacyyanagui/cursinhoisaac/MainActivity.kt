@@ -369,6 +369,11 @@ fun Tela3() {
     }
 }
 
+fun parseDecimalOuZero(valor: String): Double {
+    val normalizado = valor.replace(',', '.')
+    return normalizado.toDoubleOrNull() ?: 0.0
+}
+
 @Composable  // tela que mostra os gráficos
 fun TelaGraficoI(
     estadoJson: String,
@@ -399,7 +404,7 @@ fun TelaGraficoI(
         }
     }
 
-    fun aplicarParametrosNaWebView(valores: List<Int>) {
+    fun aplicarParametrosNaWebView(valores: List<Double>) {
         val payload = valores.joinToString(prefix = "[", postfix = "]")
         webViewRef?.evaluateJavascript("window.setParametros($payload);", null)
     }
@@ -430,7 +435,8 @@ fun TelaGraficoI(
                             webViewClient = object : WebViewClient() {
                                 override fun onPageFinished(view: WebView?, url: String?) {
                                     super.onPageFinished(view, url)
-                                    val numeros = valoresParametros.value.map { it.toIntOrNull() ?: 0 }
+                                    //val numeros = valoresParametros.value.map { it.toIntOrNull() ?: 0 }
+                                    val numeros = valoresParametros.value.map { parseDecimalOuZero(it) }
                                     aplicarParametrosNaWebView(numeros)
                                 }
                             }
@@ -471,7 +477,7 @@ fun TelaGraficoI(
                 OutlinedTextField(
                     value = valoresParametros.value[index],
                     onValueChange = { novoValor ->
-                        if (novoValor.isEmpty() || novoValor.matches(Regex("^-?\\d+$"))) {
+                        if (novoValor.isEmpty() || novoValor.matches(Regex("^-?\\d*([\\.,]\\d*)?$"))) {
                             valoresParametros.value = valoresParametros.value.toMutableList().also { it[index] = novoValor }
                         }
                     },
@@ -506,7 +512,8 @@ fun TelaGraficoI(
 
             Button(
                 onClick = {
-                    val numeros = valoresParametros.value.map { it.toIntOrNull() ?: 0 }
+                    //val numeros = valoresParametros.value.map { it.toIntOrNull() ?: 0 }
+                    val numeros = valoresParametros.value.map { parseDecimalOuZero(it) }
                     if (!carregarGrafico) {
                         carregarGrafico = true
                     } else {
