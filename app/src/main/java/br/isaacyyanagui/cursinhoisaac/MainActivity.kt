@@ -1,8 +1,7 @@
 package br.isaacyyanagui.cursinhoisaac
 
-import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
+import android.net.Uri
 import android.webkit.WebSettings
 import android.webkit.WebView
 import android.webkit.WebViewClient
@@ -20,6 +19,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -33,6 +33,7 @@ import androidx.navigation.compose.rememberNavController
 import coil.compose.rememberImagePainter
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberSaveable
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.getValue
@@ -41,7 +42,10 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.ui.text.input.KeyboardOptions
 import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.sp
 import androidx.media3.common.MediaItem
@@ -92,8 +96,9 @@ fun EscolinhaApp() {
             val grafico = graficos.getOrNull(index)
             TelaGraficoI(  // visualização dos gráficos
                 estadoJson = grafico?.arquivoJson ?: "arquivo_padrao.json",
-                videoUrl = grafico?.videoUrl ?: "https://www.youtube.com/watch?v=dQw4w9WgXcQ", // URL padrão
-                texto = grafico?.texto ?: ""
+                videoUrl = grafico?.videoUrl ?: "https://www.youtube.com/watch?v=dQw4w9WgXcQ", // Mantido para uso futuro
+                texto = grafico?.texto ?: "",
+                listaParametros = grafico?.listaParametros ?: emptyList()
             )
         }
     }
@@ -362,10 +367,21 @@ fun Tela3() {
 }
 
 @Composable  // tela que mostra os gráficos
-fun TelaGraficoI(estadoJson: String, videoUrl: String, texto: String) {
+fun TelaGraficoI(
+    estadoJson: String,
+    videoUrl: String,
+    texto: String,
+    listaParametros: List<String>
+) {
     val context = LocalContext.current
     val server = remember { LocalWebServer(context) }
     var isServerReady by remember { mutableStateOf(false) } // Estado para controlar a inicialização do servidor
+    var carregarGrafico by remember { mutableStateOf(false) }
+    var webViewRef by remember { mutableStateOf<WebView?>(null) }
+
+    val valoresParametros = rememberSaveable(listaParametros) {
+        mutableStateOf(List(listaParametros.size) { "" })
+    }
 
     // Inicializa o servidor de forma assíncrona
     LaunchedEffect(Unit) {
@@ -380,6 +396,11 @@ fun TelaGraficoI(estadoJson: String, videoUrl: String, texto: String) {
         }
     }
 
+    fun aplicarParametrosNaWebView(valores: List<Int>) {
+        val payload = valores.joinToString(prefix = "[", postfix = "]")
+        webViewRef?.evaluateJavascript("window.setParametros($payload);", null)
+    }
+
     Row(
         modifier = Modifier
             .fillMaxSize()
@@ -392,25 +413,33 @@ fun TelaGraficoI(estadoJson: String, videoUrl: String, texto: String) {
                 .weight(0.75f)
                 .fillMaxHeight()
         ) {
-            // WebView para exibir o gráfico
-            if (isServerReady) { // Carrega a WebView apenas quando o servidor estiver pronto
-                AndroidView(factory = { context ->
-                    WebView(context).apply {
-                        settings.javaScriptEnabled = true
-                        settings.domStorageEnabled = true
-                        settings.loadWithOverviewMode = true
-                        settings.useWideViewPort = true
-                        settings.allowFileAccess = true
-                        settings.allowContentAccess = true
-                        settings.layoutAlgorithm = WebSettings.LayoutAlgorithm.TEXT_AUTOSIZING
-                        webViewClient = WebViewClient()
-                        layoutParams = LinearLayout.LayoutParams(
-                            LinearLayout.LayoutParams.MATCH_PARENT,
-                            LinearLayout.LayoutParams.MATCH_PARENT
-                        )
-                        loadUrl("http://localhost:12346/grafico.html?json=$estadoJson")
-                    }
-                }, modifier = Modifier.fillMaxSize())
+            if (isServerReady && carregarGrafico) {
+                AndroidView(
+                    factory = { androidContext ->
+                        WebView(androidContext).apply {
+                            settings.javaScriptEnabled = true
+                            settings.domStorageEnabled = true
+                            settings.loadWithOverviewMode = true
+                            settings.useWideViewPort = true
+                            settings.allowFileAccess = true
+                            settings.allowContentAccess = true
+                            settings.layoutAlgorithm = WebSettings.LayoutAlgorithm.TEXT_AUTOSIZING
+                            webViewClient = object : WebViewClient() {
+                                override fun onPageFinished(view: WebView?, url: String?) {
+                                    super.onPageFinished(view, url)
+                                    val numeros = valoresParametros.value.map { it.toIntOrNull() ?: 0 }
+                                    aplicarParametrosNaWebView(numeros)
+                                }
+                            }
+                            layoutParams = LinearLayout.LayoutParams(
+                                LinearLayout.LayoutParams.MATCH_PARENT,
+                                LinearLayout.LayoutParams.MATCH_PARENT
+                            )
+                            loadUrl("http://localhost:12346/grafico.html?json=$estadoJson")
+                        }.also { webViewRef = it }
+                    },
+                    modifier = Modifier.fillMaxSize()
+                )
             }
         }
 
@@ -426,28 +455,57 @@ fun TelaGraficoI(estadoJson: String, videoUrl: String, texto: String) {
             Text(
                 text = texto,
                 color = Color.White,
-                fontSize = 22.sp,
+                fontSize = 20.sp,
                 textAlign = TextAlign.Center
             )
 
-            Spacer(modifier = Modifier.height(20.dp))
+            Spacer(modifier = Modifier.height(16.dp))
+
+            listaParametros.forEachIndexed { index, nomeParametro ->
+                OutlinedTextField(
+                    value = valoresParametros.value[index],
+                    onValueChange = { novoValor ->
+                        if (novoValor.isEmpty() || novoValor.matches(Regex("^-?\\d+$"))) {
+                            valoresParametros.value = valoresParametros.value.toMutableList().also { it[index] = novoValor }
+                        }
+                    },
+                    label = { Text(nomeParametro) },
+                    singleLine = true,
+                    keyboardOptions = KeyboardOptions(
+                        keyboardType = KeyboardType.Number,
+                        imeAction = ImeAction.Next
+                    ),
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(vertical = 4.dp)
+                )
+            }
+
+            Spacer(modifier = Modifier.height(16.dp))
 
             Button(
                 onClick = {
-                    val intent = Intent(Intent.ACTION_VIEW).apply {
-                        data = Uri.parse(videoUrl) // Define a URL do vídeo
+                    val numeros = valoresParametros.value.map { it.toIntOrNull() ?: 0 }
+                    if (!carregarGrafico) {
+                        carregarGrafico = true
+                    } else {
+                        aplicarParametrosNaWebView(numeros)
                     }
-                    context.startActivity(intent)
                 },
                 colors = ButtonDefaults.buttonColors(
                     containerColor = Color(0xFF1B5E20),
                     contentColor = Color.White
-                )
+                ),
+                modifier = Modifier.fillMaxWidth()
             ) {
-                Text(text = "Abrir Vídeo")
+                Text(text = "Calcular")
             }
         }
     }
+
+    // Mantido para uso futuro
+    @Suppress("UNUSED_VARIABLE")
+    val urlVideoMantida = videoUrl
 
     // Stop the server when leaving the composable
     DisposableEffect(Unit) {
@@ -481,6 +539,7 @@ fun PreviewTelaGraficoI() {
     TelaGraficoI(
         estadoJson = "DaviEGolias.json",
         videoUrl = "https://www.youtube.com/watch?v=dQw4w9WgXcQ", // URL padrão
-        texto = "Texto de exemplo"
+        texto = "Texto de exemplo",
+        listaParametros = listOf("a", "b")
     )
 }
