@@ -3,59 +3,47 @@
   "randomSeed": "299b5abe0a73e1040aacfe8fafd54478",
   "graph": {
     "viewport": {
-      "xmin": -12.843702938784393,
-      "ymin": -20.914059799901455,
-      "xmax": 28.554096896806936,
-      "ymax": 22.4592850874954
+      "xmin": -13.884943986428969,
+      "ymin": -25.44553953898149,
+      "xmax": 25.077691152951214,
+      "ymax": 9.502639992418626
     },
     "showGrid": false,
     "showXAxis": false,
     "showYAxis": false,
     "xAxisNumbers": false,
     "yAxisNumbers": false,
-    "polarNumbers": false
+    "polarNumbers": false,
+    "__v12ViewportLatexStash": {
+      "xmin": "-13.884943986428969",
+      "xmax": "25.077691152951214",
+      "ymin": "-25.44553953898149",
+      "ymax": "9.502639992418626"
+    }
   },
   "expressions": {
     "list": [
       {
-        "type": "text",
-        "id": "121578",
-        "text": "Clique no botão \"Abrir Vídeo\" para ver o tutorial de como usar essa ferramenta"
+        "type": "expression",
+        "id": "num1",
+        "color": "#c74440",
+        "latex": "N_{um1}=1"
       },
       {
         "type": "expression",
-        "id": "121031",
-        "color": "#6042a6",
-        "latex": "p_{asso}"
-      },
-      {
-        "type": "expression",
-        "id": "121018",
+        "id": "num2",
         "color": "#2d70b3",
-        "latex": "P_{arcela}=1",
-        "slider": {
-          "hardMin": true,
-          "hardMax": true,
-          "min": "1",
-          "max": "Q_{max}",
-          "step": "1"
-        }
-      },
-      {
-        "type": "expression",
-        "id": "121032",
-        "color": "#000000",
-        "latex": "r_{eset}"
+        "latex": "N_{um2}=1"
       },
       {
         "type": "expression",
         "id": "121030",
         "color": "#388c46",
-        "latex": "D_{ividendoInicial}=30",
+        "latex": "D_{ividendoInicial}=\\operatorname{floor}\\left(N_{um1}\\right)",
         "slider": {
           "hardMin": true,
           "min": "0",
-          "max": "285",
+          "max": "538",
           "step": "1"
         }
       },
@@ -63,7 +51,7 @@
         "type": "expression",
         "id": "121003",
         "color": "#c74440",
-        "latex": "D_{ivisor}=4",
+        "latex": "D_{ivisor}=\\operatorname{floor}\\left(N_{um2}\\right)",
         "slider": {
           "hardMin": true,
           "min": "1",
@@ -114,54 +102,257 @@
       },
       {
         "type": "folder",
-        "id": "121034",
-        "title": "Prévia",
+        "id": "121041",
+        "title": "Conta",
         "collapsed": true
       },
       {
         "type": "expression",
-        "id": "121035",
-        "folderId": "121034",
+        "id": "121794",
+        "folderId": "121041",
         "color": "#c74440",
-        "latex": "O_{k}=\\left\\{D_{ivisor}\\cdot P_{arcela}\\le D_{ividendo}:1,0\\right\\}"
+        "latex": "o_{n}=1",
+        "slider": {
+          "hardMin": true,
+          "hardMax": true,
+          "min": "0",
+          "max": "1",
+          "step": "1"
+        }
       },
       {
         "type": "expression",
-        "id": "121036",
-        "folderId": "121034",
+        "id": "121031",
+        "folderId": "121041",
+        "color": "#6042a6",
+        "latex": "p_{asso}"
+      },
+      {
+        "type": "expression",
+        "id": "121002",
+        "folderId": "121041",
+        "color": "#000000",
+        "latex": "D_{ividendo}=0+0",
+        "slider": {
+          "step": "1"
+        }
+      },
+      {
+        "type": "expression",
+        "id": "121004",
+        "folderId": "121041",
         "color": "#2d70b3",
-        "latex": "n_{ot}\\left(x\\right)=\\left\\{x=0:1,0\\right\\}",
+        "latex": "Q_{uociente}=\\operatorname{floor}\\left(\\frac{D_{ividendoInicial}}{D_{ivisor}}\\right)",
+        "slider": {
+          "hardMin": true,
+          "min": "0",
+          "max": "12",
+          "step": "1"
+        }
+      },
+      {
+        "type": "expression",
+        "id": "121005",
+        "folderId": "121041",
+        "color": "#388c46",
+        "latex": "R_{esto}=D_{ividendoInicial}-D_{ivisor}\\cdot Q_{uociente}",
+        "slider": {
+          "hardMin": true,
+          "min": "0",
+          "step": "1"
+        }
+      },
+      {
+        "type": "expression",
+        "id": "121809",
+        "folderId": "121041",
+        "color": "#000000",
+        "latex": "Q_{max}=d_{igs}\\left(Q_{uociente}\\right)"
+      },
+      {
+        "type": "expression",
+        "id": "121810",
+        "folderId": "121041",
+        "color": "#c74440",
+        "latex": "Q_{min}=\\max\\left(\\left\\{d_{igitos}\\left(Q_{uociente}\\right)=0:\\left[d_{igs}\\left(Q_{uociente}\\right)...1\\right],0\\right\\}\\right)"
+      },
+      {
+        "type": "expression",
+        "id": "121044",
+        "folderId": "121041",
+        "color": "#000000",
+        "latex": "Q_{uocienteLista}=\\left\\{Q_{uociente}=0:\\left[0\\right],\\operatorname{mod}\\left(Q_{uociente},10^{\\left[Q_{max}...Q_{min}+1\\right]}\\right)-\\operatorname{mod}\\left(Q_{uociente},10^{\\left[Q_{max}-1...Q_{min}\\right]}\\right)\\right\\}"
+      },
+      {
+        "type": "expression",
+        "id": "121050",
+        "folderId": "121041",
+        "color": "#c74440",
+        "latex": "S_{ubtraiLista}=Q_{uocienteLista}\\cdot D_{ivisor}"
+      },
+      {
+        "type": "expression",
+        "id": "121043",
+        "folderId": "121041",
+        "color": "#6042a6",
+        "latex": "D_{ividendoLista}=D_{ividendoInicial}-\\sum_{x=1}^{\\left[0...\\operatorname{length}\\left(S_{ubtraiLista}\\right)\\right]}S_{ubtraiLista}\\left[x\\right]"
+      },
+      {
+        "type": "expression",
+        "id": "121042",
+        "folderId": "121041",
+        "color": "#388c46",
+        "latex": "P_{conta}=\\left(0,0\\right)",
         "hidden": true
       },
       {
         "type": "expression",
-        "id": "121068",
-        "folderId": "121034",
-        "color": "#2d70b3",
-        "latex": "A_{cabou}"
+        "id": "121052",
+        "folderId": "121041",
+        "color": "#388c46",
+        "latex": "T_{amConta}=1",
+        "slider": {
+          "hardMin": true,
+          "hardMax": true,
+          "min": "0",
+          "max": "1"
+        }
       },
       {
         "type": "expression",
-        "id": "121033",
-        "folderId": "121034",
+        "id": "121051",
+        "folderId": "121041",
         "color": "#2d70b3",
-        "latex": "\\frac{b_{otaoNum}\\left(D_{ivisor}\\cdot P_{arcela},t\\right)}{1.5}+\\left(0.5,2.25\\right)",
-        "lineOpacity": ".7n_{ot}\\left(A_{cabou}\\right)",
+        "latex": "P_{conta}+T_{amConta}\\left(n_{um2}\\left(\\left[D_{ivisor}\\right],t\\right)+\\left(3.5,0\\right)\\right)\\left\\{o_{n}=1\\right\\}"
+      },
+      {
+        "type": "expression",
+        "id": "121053",
+        "folderId": "121041",
+        "color": "#6042a6",
+        "latex": "P_{conta}+T_{amConta}\\left(\\left(3+\\left\\{t<\\frac{1}{2}:0,5\\left(t-\\frac{1}{2}\\right)\\right\\},\\left\\{t<\\frac{1}{4}:-0.25+5.6t,\\ t<\\frac{1}{2}:-16\\left(\\operatorname{length}\\left(D_{ividendoLista}\\right)\\right)\\left(t-\\frac{1}{4}\\right),-0.25\\right\\}\\right)\\right)\\left\\{o_{n}=1\\right\\}"
+      },
+      {
+        "type": "expression",
+        "id": "121049",
+        "folderId": "121041",
+        "color": "#000000",
+        "latex": "P_{conta}+T_{amConta}\\left(n_{um2}\\left(D_{ividendoLista},t\\right)+\\left(2-\\operatorname{floor}\\left(\\log\\left(D_{ividendoLista}\\right)\\right),-\\left[0...\\operatorname{length}\\left(D_{ividendoLista}\\right)\\right]4\\right)\\right)\\left\\{o_{n}=1\\right\\}",
+        "hidden": true
+      },
+      {
+        "type": "expression",
+        "id": "121583",
+        "folderId": "121041",
+        "color": "#000000",
+        "latex": "P_{conta}+T_{amConta}\\left(n_{um2}\\left(D_{ividendoLista},t\\right)+\\left(2-\\operatorname{floor}\\left(\\log\\left(\\max\\left(D_{ividendoLista},1\\right)\\right)\\right),-\\left[0...\\operatorname{length}\\left(D_{ividendoLista}\\right)\\right]4\\right)\\right)\\left\\{o_{n}=1\\right\\}"
+      },
+      {
+        "type": "expression",
+        "id": "121055",
+        "folderId": "121041",
+        "color": "#000000",
+        "latex": "P_{conta}+T_{amConta}\\left(\\left(0,-2\\right)+n_{um2}\\left(S_{ubtraiLista},t\\right)+\\left(2-\\operatorname{floor}\\left(\\log\\left(\\left\\{S_{ubtraiLista}=0:1,S_{ubtraiLista}\\right\\}\\right)\\right),-\\left[0...\\operatorname{length}\\left(S_{ubtraiLista}\\right)\\right]4\\right)\\right)\\left\\{o_{n}=1\\right\\}"
+      },
+      {
+        "type": "expression",
+        "id": "121064",
+        "folderId": "121041",
+        "color": "#c74440",
+        "latex": "P_{conta}+T_{amConta}\\left(\\left(0,-2\\right)+n_{um2}\\left(\\left[D_{ivisor}\\cdot P_{arcela}\\right],t\\right)+\\left(2-\\operatorname{floor}\\left(\\log\\left(D_{ivisor}\\cdot P_{arcela}\\right)\\right),-\\operatorname{length}\\left(S_{ubtraiLista}\\right)4\\right)\\right)\\left\\{o_{n}=1\\right\\}",
+        "lineOpacity": "1-A_{cabou}"
+      },
+      {
+        "type": "expression",
+        "id": "121056",
+        "folderId": "121041",
+        "color": "#000000",
+        "latex": "P_{conta}+T_{amConta}\\left(\\left(-1,-1.5\\right)+\\left(\\frac{t}{2},0\\right)+\\left(2-\\operatorname{floor}\\left(\\left\\{S_{ubtraiLista}=0:0,\\log\\left(S_{ubtraiLista}\\right)\\right\\}\\right),-\\left[0...\\operatorname{length}\\left(S_{ubtraiLista}\\right)\\right]4\\right)\\right)\\left\\{o_{n}=1\\right\\}"
+      },
+      {
+        "type": "expression",
+        "id": "121065",
+        "folderId": "121041",
+        "color": "#c74440",
+        "latex": "P_{conta}+T_{amConta}\\left(\\left(-1,-1.5\\right)+\\left(\\frac{t}{2},0\\right)+\\left(2-\\operatorname{floor}\\left(\\log\\left(D_{ivisor}\\cdot P_{arcela}\\right)\\right),-\\operatorname{length}\\left(S_{ubtraiLista}\\right)4\\right)\\right)\\left\\{o_{n}=1\\right\\}",
+        "lineOpacity": "1-A_{cabou}"
+      },
+      {
+        "type": "expression",
+        "id": "121057",
+        "folderId": "121041",
+        "color": "#000000",
+        "latex": "P_{conta}+T_{amConta}\\left(\\left(0,-2.5\\right)+\\left(-3t,0\\right)+\\left\\{\\operatorname{length}\\left(S_{ubtraiLista}\\right)>0:\\left(3,-\\left[0...\\operatorname{length}\\left(S_{ubtraiLista}\\right)-1\\right]4\\right),\\left(\\frac{1}{0},\\frac{1}{0}\\right)\\right\\}\\right)\\left\\{o_{n}=1\\right\\}"
+      },
+      {
+        "type": "expression",
+        "id": "121058",
+        "folderId": "121041",
+        "color": "#000000",
+        "latex": "P_{conta}+T_{amConta}\\left(\\left(3.5,-2\\right)+n_{um2}\\left(Q_{uocienteLista},t\\right)+\\left(\\max\\left(\\operatorname{floor}\\left(\\log\\left(Q_{uocienteLista}\\right)\\right)\\right)-\\operatorname{floor}\\left(\\log\\left(Q_{uocienteLista}\\right)\\right),-\\left[0...\\operatorname{length}\\left(Q_{uocienteLista}\\right)\\right]2\\right)\\right)\\left\\{o_{n}=1\\right\\}",
+        "hidden": true
+      },
+      {
+        "type": "expression",
+        "id": "121063",
+        "folderId": "121041",
+        "color": "#388c46",
+        "latex": "P_{conta}+T_{amConta}\\left(\\left(3.5,-2\\right)+n_{um2}\\left(\\left[P_{arcela}\\right],t\\right)+\\left(\\left\\{\\operatorname{length}\\left(Q_{uocienteLista}\\right)\\ge1:\\max\\left(\\operatorname{floor}\\left(\\log\\left(Q_{uocienteLista}\\right)\\right)\\right),0\\right\\}-\\left\\{\\operatorname{length}\\left(Q_{uocienteLista}\\right)\\ge1:\\operatorname{floor}\\left(\\log\\left(P_{arcela}\\right)\\right),0\\right\\},-\\operatorname{length}\\left(Q_{uocienteLista}\\right)2\\right)\\right)+0\\left(d_{igs}\\left(P_{arcela}\\right)-1,0\\right)\\left\\{o_{n}=1\\right\\}",
+        "lineOpacity": "1-A_{cabou}",
         "lineWidth": "2.5O_{k}"
       },
       {
         "type": "expression",
-        "id": "121037",
-        "folderId": "121034",
+        "id": "121066",
+        "folderId": "121041",
         "color": "#c74440",
-        "latex": "\\frac{b_{otaoNum}\\left(D_{ivisor}\\cdot P_{arcela},t\\right)}{1.5}+\\left(0.5,2.25\\right)",
-        "lineOpacity": ".7n_{ot}\\left(A_{cabou}\\right)",
+        "latex": "P_{conta}+T_{amConta}\\left(\\left(3.5,-2\\right)+n_{um2}\\left(\\left[P_{arcela}\\right],t\\right)+\\left(\\left\\{\\operatorname{length}\\left(Q_{uocienteLista}\\right)\\ge1:\\max\\left(\\operatorname{floor}\\left(\\log\\left(Q_{uocienteLista}\\right)\\right)\\right),0\\right\\}-\\left\\{\\operatorname{length}\\left(Q_{uocienteLista}\\right)\\ge1:\\operatorname{floor}\\left(\\log\\left(P_{arcela}\\right)\\right),0\\right\\},-\\operatorname{length}\\left(Q_{uocienteLista}\\right)2\\right)\\right)+0\\left(d_{igs}\\left(P_{arcela}\\right)-1,0\\right)\\left\\{o_{n}=1\\right\\}",
+        "lineOpacity": "1-A_{cabou}",
         "lineWidth": "2.5n_{ot}\\left(O_{k}\\right)"
+      },
+      {
+        "type": "expression",
+        "id": "121060",
+        "folderId": "121041",
+        "color": "#000000",
+        "latex": "P_{conta}+T_{amConta}\\left(\\left(3,-2\\right)+\\left(3t,-\\operatorname{length}\\left(Q_{uocienteLista}\\right)2+1.5\\right)\\right)\\left\\{o_{n}=1\\right\\}",
+        "hidden": true,
+        "lineWidth": "2.5A_{cabou}"
+      },
+      {
+        "type": "expression",
+        "id": "121061",
+        "folderId": "121041",
+        "color": "#fa7e19",
+        "latex": "P_{conta}+T_{amConta}\\left(\\left(3.5,-2\\right)+n_{um2}\\left(\\left[\\operatorname{total}\\left(Q_{uocienteLista}\\right)\\right],t\\right)+\\left(0,-0\\operatorname{length}\\left(Q_{uocienteLista}\\right)2\\right)\\right)\\left\\{o_{n}=1\\right\\}",
+        "lineOpacity": "1",
+        "lineWidth": "3A_{cabou}"
+      },
+      {
+        "type": "expression",
+        "id": "121062",
+        "folderId": "121041",
+        "color": "#000000",
+        "latex": "A_{cabou}=\\left\\{D_{ividendo}<D_{ivisor}:1,0\\right\\}"
+      },
+      {
+        "type": "expression",
+        "id": "121018",
+        "folderId": "121041",
+        "color": "#2d70b3",
+        "latex": "P_{arcela}=1",
+        "slider": {
+          "hardMin": true,
+          "hardMax": true,
+          "min": "1",
+          "max": "Q_{max2}",
+          "step": "1"
+        }
       },
       {
         "type": "folder",
         "id": "121001",
-        "title": "Divisão e MEF",
+        "title": "Divisão e MEF (transforma em combinatório)",
         "collapsed": true
       },
       {
@@ -257,42 +448,7 @@
         "id": "121585",
         "folderId": "121001",
         "color": "#c74440",
-        "latex": "Q_{max}=\\max\\left(1,\\operatorname{floor}\\left(1.5\\frac{D_{ividendo}}{D_{ivisor}}\\right)\\right)"
-      },
-      {
-        "type": "expression",
-        "id": "121002",
-        "folderId": "121001",
-        "color": "#000000",
-        "latex": "D_{ividendo}=30",
-        "slider": {
-          "step": "1"
-        }
-      },
-      {
-        "type": "expression",
-        "id": "121004",
-        "folderId": "121001",
-        "color": "#2d70b3",
-        "latex": "Q_{uociente}=0",
-        "slider": {
-          "hardMin": true,
-          "min": "0",
-          "max": "12",
-          "step": "1"
-        }
-      },
-      {
-        "type": "expression",
-        "id": "121005",
-        "folderId": "121001",
-        "color": "#388c46",
-        "latex": "R_{esto}=0",
-        "slider": {
-          "hardMin": true,
-          "min": "0",
-          "step": "1"
-        }
+        "latex": "Q_{max2}=\\max\\left(1,\\operatorname{floor}\\left(1.5\\frac{D_{ividendo}}{D_{ivisor}}\\right)\\right)"
       },
       {
         "type": "expression",
@@ -314,177 +470,56 @@
       },
       {
         "type": "folder",
-        "id": "121041",
-        "title": "Conta",
+        "id": "121034",
+        "title": "Prévia",
+        "hidden": true,
         "collapsed": true
       },
       {
         "type": "expression",
-        "id": "121045",
-        "folderId": "121041",
+        "id": "121035",
+        "folderId": "121034",
         "color": "#c74440",
-        "latex": "p_{asso}"
+        "latex": "O_{k}=\\left\\{D_{ivisor}\\cdot P_{arcela}\\le D_{ividendo}:1,0\\right\\}"
       },
       {
         "type": "expression",
-        "id": "121043",
-        "folderId": "121041",
-        "color": "#6042a6",
-        "latex": "D_{ividendoLista}=\\left[30\\right]"
-      },
-      {
-        "type": "expression",
-        "id": "121050",
-        "folderId": "121041",
-        "color": "#c74440",
-        "latex": "S_{ubtraiLista}=\\left[\\right]"
-      },
-      {
-        "type": "expression",
-        "id": "121044",
-        "folderId": "121041",
-        "color": "#000000",
-        "latex": "Q_{uocienteLista}=\\left[\\right]"
-      },
-      {
-        "type": "expression",
-        "id": "121042",
-        "folderId": "121041",
-        "color": "#388c46",
-        "latex": "P_{conta}=\\left(14.68,5.3\\right)"
-      },
-      {
-        "type": "expression",
-        "id": "121052",
-        "folderId": "121041",
-        "color": "#388c46",
-        "latex": "T_{amConta}=1",
-        "slider": {
-          "hardMin": true,
-          "hardMax": true,
-          "min": "0",
-          "max": "1"
-        }
-      },
-      {
-        "type": "expression",
-        "id": "121051",
-        "folderId": "121041",
+        "id": "121036",
+        "folderId": "121034",
         "color": "#2d70b3",
-        "latex": "P_{conta}+T_{amConta}\\left(n_{um2}\\left(\\left[D_{ivisor}\\right],t\\right)+\\left(3.5,0\\right)\\right)"
-      },
-      {
-        "type": "expression",
-        "id": "121053",
-        "folderId": "121041",
-        "color": "#6042a6",
-        "latex": "P_{conta}+T_{amConta}\\left(\\left(3+\\left\\{t<\\frac{1}{2}:0,5\\left(t-\\frac{1}{2}\\right)\\right\\},\\left\\{t<\\frac{1}{4}:-0.25+5.6t,\\ t<\\frac{1}{2}:-16\\left(\\operatorname{length}\\left(D_{ividendoLista}\\right)\\right)\\left(t-\\frac{1}{4}\\right),-0.25\\right\\}\\right)\\right)"
-      },
-      {
-        "type": "expression",
-        "id": "121049",
-        "folderId": "121041",
-        "color": "#000000",
-        "latex": "P_{conta}+T_{amConta}\\left(n_{um2}\\left(D_{ividendoLista},t\\right)+\\left(2-\\operatorname{floor}\\left(\\log\\left(D_{ividendoLista}\\right)\\right),-\\left[0...\\operatorname{length}\\left(D_{ividendoLista}\\right)\\right]4\\right)\\right)",
+        "latex": "n_{ot}\\left(x\\right)=\\left\\{x=0:1,0\\right\\}",
         "hidden": true
       },
       {
         "type": "expression",
-        "id": "121583",
-        "folderId": "121041",
-        "color": "#000000",
-        "latex": "P_{conta}+T_{amConta}\\left(n_{um2}\\left(D_{ividendoLista},t\\right)+\\left(2-\\operatorname{floor}\\left(\\log\\left(\\max\\left(D_{ividendoLista},1\\right)\\right)\\right),-\\left[0...\\operatorname{length}\\left(D_{ividendoLista}\\right)\\right]4\\right)\\right)"
+        "id": "121068",
+        "folderId": "121034",
+        "color": "#2d70b3",
+        "latex": "A_{cabou}"
       },
       {
         "type": "expression",
-        "id": "121055",
-        "folderId": "121041",
-        "color": "#000000",
-        "latex": "P_{conta}+T_{amConta}\\left(\\left(0,-2\\right)+n_{um2}\\left(S_{ubtraiLista},t\\right)+\\left(2-\\operatorname{floor}\\left(\\log\\left(S_{ubtraiLista}\\right)\\right),-\\left[0...\\operatorname{length}\\left(S_{ubtraiLista}\\right)\\right]4\\right)\\right)"
-      },
-      {
-        "type": "expression",
-        "id": "121064",
-        "folderId": "121041",
-        "color": "#c74440",
-        "latex": "P_{conta}+T_{amConta}\\left(\\left(0,-2\\right)+n_{um2}\\left(\\left[D_{ivisor}\\cdot P_{arcela}\\right],t\\right)+\\left(2-\\operatorname{floor}\\left(\\log\\left(D_{ivisor}\\cdot P_{arcela}\\right)\\right),-\\operatorname{length}\\left(S_{ubtraiLista}\\right)4\\right)\\right)",
-        "lineOpacity": "1-A_{cabou}"
-      },
-      {
-        "type": "expression",
-        "id": "121056",
-        "folderId": "121041",
-        "color": "#000000",
-        "latex": "P_{conta}+T_{amConta}\\left(\\left(-1,-1.5\\right)+\\left(\\frac{t}{2},0\\right)+\\left(2-\\operatorname{floor}\\left(\\log\\left(S_{ubtraiLista}\\right)\\right),-\\left[0...\\operatorname{length}\\left(S_{ubtraiLista}\\right)\\right]4\\right)\\right)"
-      },
-      {
-        "type": "expression",
-        "id": "121065",
-        "folderId": "121041",
-        "color": "#c74440",
-        "latex": "P_{conta}+T_{amConta}\\left(\\left(-1,-1.5\\right)+\\left(\\frac{t}{2},0\\right)+\\left(2-\\operatorname{floor}\\left(\\log\\left(D_{ivisor}\\cdot P_{arcela}\\right)\\right),-\\operatorname{length}\\left(S_{ubtraiLista}\\right)4\\right)\\right)",
-        "lineOpacity": "1-A_{cabou}"
-      },
-      {
-        "type": "expression",
-        "id": "121057",
-        "folderId": "121041",
-        "color": "#000000",
-        "latex": "P_{conta}+T_{amConta}\\left(\\left(0,-2.5\\right)+\\left(-3t,0\\right)+\\left\\{\\operatorname{length}\\left(S_{ubtraiLista}\\right)>0:\\left(3,-\\left[0...\\operatorname{length}\\left(S_{ubtraiLista}\\right)-1\\right]4\\right),\\left(\\frac{1}{0},\\frac{1}{0}\\right)\\right\\}\\right)"
-      },
-      {
-        "type": "expression",
-        "id": "121058",
-        "folderId": "121041",
-        "color": "#000000",
-        "latex": "P_{conta}+T_{amConta}\\left(\\left(3.5,-2\\right)+n_{um2}\\left(Q_{uocienteLista},t\\right)+\\left(\\max\\left(\\operatorname{floor}\\left(\\log\\left(Q_{uocienteLista}\\right)\\right)\\right)-\\operatorname{floor}\\left(\\log\\left(Q_{uocienteLista}\\right)\\right),-\\left[0...\\operatorname{length}\\left(Q_{uocienteLista}\\right)\\right]2\\right)\\right)"
-      },
-      {
-        "type": "expression",
-        "id": "121063",
-        "folderId": "121041",
-        "color": "#388c46",
-        "latex": "P_{conta}+T_{amConta}\\left(\\left(3.5,-2\\right)+n_{um2}\\left(\\left[P_{arcela}\\right],t\\right)+\\left(\\left\\{\\operatorname{length}\\left(Q_{uocienteLista}\\right)\\ge1:\\max\\left(\\operatorname{floor}\\left(\\log\\left(Q_{uocienteLista}\\right)\\right)\\right),0\\right\\}-\\left\\{\\operatorname{length}\\left(Q_{uocienteLista}\\right)\\ge1:\\operatorname{floor}\\left(\\log\\left(P_{arcela}\\right)\\right),0\\right\\},-\\operatorname{length}\\left(Q_{uocienteLista}\\right)2\\right)\\right)+0\\left(d_{igs}\\left(P_{arcela}\\right)-1,0\\right)",
-        "lineOpacity": "1-A_{cabou}",
+        "id": "121033",
+        "folderId": "121034",
+        "color": "#2d70b3",
+        "latex": "\\frac{b_{otaoNum}\\left(D_{ivisor}\\cdot P_{arcela},t\\right)}{1.5}+\\left(0.5,2.25\\right)",
+        "lineOpacity": ".7n_{ot}\\left(A_{cabou}\\right)",
         "lineWidth": "2.5O_{k}"
       },
       {
         "type": "expression",
-        "id": "121066",
-        "folderId": "121041",
+        "id": "121037",
+        "folderId": "121034",
         "color": "#c74440",
-        "latex": "P_{conta}+T_{amConta}\\left(\\left(3.5,-2\\right)+n_{um2}\\left(\\left[P_{arcela}\\right],t\\right)+\\left(\\left\\{\\operatorname{length}\\left(Q_{uocienteLista}\\right)\\ge1:\\max\\left(\\operatorname{floor}\\left(\\log\\left(Q_{uocienteLista}\\right)\\right)\\right),0\\right\\}-\\left\\{\\operatorname{length}\\left(Q_{uocienteLista}\\right)\\ge1:\\operatorname{floor}\\left(\\log\\left(P_{arcela}\\right)\\right),0\\right\\},-\\operatorname{length}\\left(Q_{uocienteLista}\\right)2\\right)\\right)+0\\left(d_{igs}\\left(P_{arcela}\\right)-1,0\\right)",
-        "lineOpacity": "1-A_{cabou}",
+        "latex": "\\frac{b_{otaoNum}\\left(D_{ivisor}\\cdot P_{arcela},t\\right)}{1.5}+\\left(0.5,2.25\\right)",
+        "lineOpacity": ".7n_{ot}\\left(A_{cabou}\\right)",
         "lineWidth": "2.5n_{ot}\\left(O_{k}\\right)"
-      },
-      {
-        "type": "expression",
-        "id": "121060",
-        "folderId": "121041",
-        "color": "#000000",
-        "latex": "P_{conta}+T_{amConta}\\left(\\left(3,-2\\right)+\\left(3t,-\\operatorname{length}\\left(Q_{uocienteLista}\\right)2+1.5\\right)\\right)",
-        "lineWidth": "2.5A_{cabou}"
-      },
-      {
-        "type": "expression",
-        "id": "121061",
-        "folderId": "121041",
-        "color": "#fa7e19",
-        "latex": "P_{conta}+T_{amConta}\\left(\\left(3.5,-2\\right)+n_{um2}\\left(\\left[\\operatorname{total}\\left(Q_{uocienteLista}\\right)\\right],t\\right)+\\left(0,-\\operatorname{length}\\left(Q_{uocienteLista}\\right)2\\right)\\right)",
-        "lineOpacity": "1",
-        "lineWidth": "3A_{cabou}"
-      },
-      {
-        "type": "expression",
-        "id": "121062",
-        "folderId": "121041",
-        "color": "#000000",
-        "latex": "A_{cabou}=\\left\\{D_{ividendo}<D_{ivisor}:1,0\\right\\}"
       },
       {
         "type": "folder",
         "id": "121013",
         "title": "Desenhos",
+        "hidden": true,
         "collapsed": true
       },
       {
@@ -548,8 +583,7 @@
       {
         "type": "folder",
         "id": "120822",
-        "title": "Funções dos Desenhos",
-        "collapsed": true
+        "title": "Funções dos Desenhos"
       },
       {
         "type": "expression",
@@ -613,21 +647,6 @@
         "folderId": "120822",
         "color": "#6042a6",
         "latex": "N_{um}\\left(n_{0},t\\right)",
-        "hidden": true
-      },
-      {
-        "type": "expression",
-        "id": "121047",
-        "folderId": "120822",
-        "color": "#388c46",
-        "latex": "N_{um2}\\left(n_{x},t\\right)=\\left\\{\\left|n_{x}\\right|<10:l_{etra}\\left(n_{x},t\\right),\\left|n_{x}\\right|<100:\\ \\left\\{t<\\frac{1}{2}:l_{etra}\\left(\\operatorname{floor}\\left(\\frac{n_{x}}{10}\\right),2t\\right),\\left(1,0\\right)+l_{etra}\\left(\\operatorname{mod}\\left(n_{x},10\\right),2\\left(t-\\frac{1}{2}\\right)\\right)\\right\\},\\left\\{t<\\frac{1}{3}:l_{etra}\\left(\\operatorname{floor}\\left(\\frac{n_{x}}{100}\\right),3t\\right),t<\\frac{2}{3}:\\left(1,0\\right)+l_{etra}\\left(\\operatorname{mod}\\left(\\operatorname{floor}\\left(\\frac{n_{x}}{10}\\right),10\\right),3\\left(t-\\frac{1}{3}\\right)\\right),\\left(2,0\\right)+l_{etra}\\left(\\operatorname{mod}\\left(n_{x},10\\right),3\\left(t-\\frac{2}{3}\\right)\\right)\\right\\}\\right\\}"
-      },
-      {
-        "type": "expression",
-        "id": "121048",
-        "folderId": "120822",
-        "color": "#388c46",
-        "latex": "N_{um2}\\left(\\left[n_{0},22\\right],t\\right)",
         "hidden": true
       },
       {
@@ -1212,6 +1231,20 @@
         "folderId": "14959",
         "color": "#388c46",
         "latex": "d_{igs}\\left(x\\right)=\\left\\{x=0:1,\\operatorname{floor}\\left(\\log\\left(x\\right)+1\\right)\\right\\}"
+      },
+      {
+        "type": "expression",
+        "id": "121803",
+        "folderId": "14959",
+        "color": "#000000",
+        "latex": "d_{igitos}\\left(x\\right)=\\left\\{x=0:\\left[0\\right],\\operatorname{mod}\\left(\\operatorname{floor}\\left(\\frac{x}{10^{\\left[\\operatorname{floor}\\left(\\log\\left(\\left\\{x=0:1,x\\right\\}\\right)\\right)...0\\right]}}\\right),10\\right)\\right\\}"
+      },
+      {
+        "type": "expression",
+        "id": "121804",
+        "folderId": "14959",
+        "color": "#c74440",
+        "latex": "d_{igitos}\\left(00123400578009\\right)"
       },
       {
         "type": "expression",

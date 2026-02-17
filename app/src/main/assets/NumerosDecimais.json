@@ -4,33 +4,34 @@
   "graph": {
     "viewport": {
       "xmin": -11.687970285812582,
-      "ymin": -9.540481415017343,
+      "ymin": -10.33201870226565,
       "xmax": 8.312029714187926,
-      "ymax": 6.815774554419556
+      "ymax": 7.607311841667863
     },
     "showGrid": false,
     "showXAxis": false,
     "showYAxis": false,
     "xAxisNumbers": false,
     "yAxisNumbers": false,
-    "polarNumbers": false
+    "polarNumbers": false,
+    "__v12ViewportLatexStash": {
+      "xmin": "-11.687970285812582",
+      "xmax": "8.312029714187926",
+      "ymin": "-10.33201870226565",
+      "ymax": "7.607311841667863"
+    }
   },
   "expressions": {
     "list": [
       {
-        "type": "text",
-        "id": "121789",
-        "text": "Clique no botão \"Abrir Vídeo\" para ver o tutorial de como usar essa ferramenta"
-      },
-      {
         "type": "expression",
-        "id": "121094",
+        "id": "num1",
         "color": "#c74440",
         "latex": "N_{um1}=10"
       },
       {
         "type": "expression",
-        "id": "121096",
+        "id": "num2",
         "color": "#c74440",
         "latex": "N_{um2}=0.5"
       },

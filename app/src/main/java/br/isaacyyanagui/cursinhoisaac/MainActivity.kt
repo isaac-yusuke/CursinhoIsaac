@@ -1,8 +1,7 @@
 package br.isaacyyanagui.cursinhoisaac
 
-import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
+import android.net.Uri
 import android.webkit.WebSettings
 import android.webkit.WebView
 import android.webkit.WebViewClient
@@ -16,10 +15,15 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -37,11 +41,14 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.sp
 import androidx.media3.common.MediaItem
@@ -70,7 +77,7 @@ fun EscolinhaApp() {
     NavHost(navController, startDestination = "telaVideo") {
         composable("telaVideo") { TelaVideo(navController) }
         composable("tela1") {
-            Tela1(
+            Tela1(  // Tela inicial
                 onIniciarClick = { navController.navigate("tela2") },
                 onInstrucoesClick = { navController.navigate("tela3") },
                 onReverVideoClick = { navController.navigate("telaVideo") } // Exibe o vídeo ao clicar na imagem3
@@ -78,21 +85,23 @@ fun EscolinhaApp() {
         }
         composable("tela2") {
             // Obtém os títulos dos gráficos do arquivo Data.kt
-            Tela2(
+            Tela2(  // Lista de graficos
                 listaDeBotoes = graficos.map { it.titulo },
                 onBotaoClick = { index -> navController.navigate("grafico/${index - 1}") }
             )
         }
         composable("tela3") {
-            Tela3()
+            Tela3() // tela de instruções
         }
         composable("grafico/{index}") { backStackEntry ->
             val index = backStackEntry.arguments?.getString("index")?.toIntOrNull() ?: 0
             // Obtém os dados do gráfico correspondente de Data.kt
             val grafico = graficos.getOrNull(index)
-            TelaGraficoI(
+            TelaGraficoI(  // visualização dos gráficos
                 estadoJson = grafico?.arquivoJson ?: "arquivo_padrao.json",
-                videoUrl = grafico?.videoUrl ?: "https://www.youtube.com/watch?v=dQw4w9WgXcQ" // URL padrão
+                videoUrl = grafico?.videoUrl ?: "https://www.youtube.com/watch?v=dQw4w9WgXcQ", // Mantido para uso futuro
+                texto = grafico?.texto ?: "",
+                listaParametros = grafico?.listaParametros ?: emptyList()
             )
         }
     }
@@ -145,7 +154,7 @@ fun TelaVideo(navController: NavController) {
 }
 
 
-@Composable
+@Composable // Tela inicial
 fun Tela1(onIniciarClick: () -> Unit, onInstrucoesClick: () -> Unit, onReverVideoClick: () -> Unit) {
     val context = LocalContext.current
 
@@ -240,7 +249,7 @@ fun Tela1(onIniciarClick: () -> Unit, onInstrucoesClick: () -> Unit, onReverVide
     }
 }
 
-@Composable
+@Composable // lista de gráficos
 fun Tela2(listaDeBotoes: List<String>, onBotaoClick: (Int) -> Unit) {
     Box(
         modifier = Modifier
@@ -294,7 +303,7 @@ fun Tela2(listaDeBotoes: List<String>, onBotaoClick: (Int) -> Unit) {
     }
 }
 
-@Composable
+@Composable // Tela de instruções
 fun Tela3() {
     Box(
         modifier = Modifier
@@ -360,11 +369,27 @@ fun Tela3() {
     }
 }
 
-@Composable
-fun TelaGraficoI(estadoJson: String, videoUrl: String) {
+fun parseDecimalOuZero(valor: String): Double {
+    val normalizado = valor.replace(',', '.')
+    return normalizado.toDoubleOrNull() ?: 0.0
+}
+
+@Composable  // tela que mostra os gráficos
+fun TelaGraficoI(
+    estadoJson: String,
+    videoUrl: String,
+    texto: String,
+    listaParametros: List<String>
+) {
     val context = LocalContext.current
     val server = remember { LocalWebServer(context) }
     var isServerReady by remember { mutableStateOf(false) } // Estado para controlar a inicialização do servidor
+    var carregarGrafico by remember { mutableStateOf(false) }
+    var webViewRef by remember { mutableStateOf<WebView?>(null) }
+
+    val valoresParametros = rememberSaveable(listaParametros) {
+        mutableStateOf(List(listaParametros.size) { "" })
+    }
 
     // Inicializa o servidor de forma assíncrona
     LaunchedEffect(Unit) {
@@ -379,50 +404,136 @@ fun TelaGraficoI(estadoJson: String, videoUrl: String) {
         }
     }
 
-    Box(modifier = Modifier.fillMaxSize()
-                            .padding(
-                                end = WindowInsets.navigationBars.asPaddingValues().calculateEndPadding(LayoutDirection.Ltr)
-                            )) {
-        // WebView para exibir o gráfico
-        if (isServerReady) { // Carrega a WebView apenas quando o servidor estiver pronto
-            AndroidView(factory = { context ->
-                WebView(context).apply {
-                    settings.javaScriptEnabled = true
-                    settings.domStorageEnabled = true
-                    settings.loadWithOverviewMode = true
-                    settings.useWideViewPort = true
-                    settings.allowFileAccess = true
-                    settings.allowContentAccess = true
-                    settings.layoutAlgorithm = WebSettings.LayoutAlgorithm.TEXT_AUTOSIZING
-                    webViewClient = WebViewClient()
-                    layoutParams = LinearLayout.LayoutParams(
-                        LinearLayout.LayoutParams.MATCH_PARENT,
-                        LinearLayout.LayoutParams.MATCH_PARENT
-                    )
-                    loadUrl("http://localhost:12346/grafico.html?json=$estadoJson")
-                }
-            }, modifier = Modifier.fillMaxSize()) // WebView ocupa a tela inteira
+    fun aplicarParametrosNaWebView(valores: List<Double>) {
+        val payload = valores.joinToString(prefix = "[", postfix = "]")
+        webViewRef?.evaluateJavascript("window.setParametros($payload);", null)
+    }
+
+    Row(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(
+                end = WindowInsets.navigationBars.asPaddingValues().calculateEndPadding(LayoutDirection.Ltr)
+            )
+    ) {
+        Box(
+            modifier = Modifier
+                .weight(0.75f)
+                .fillMaxHeight()
+        ) {
+            if (isServerReady && carregarGrafico) {
+                AndroidView(
+                    factory = { androidContext ->
+                        WebView(androidContext).apply {
+                            settings.javaScriptEnabled = true
+                            settings.domStorageEnabled = true
+                            settings.loadWithOverviewMode = true
+                            settings.useWideViewPort = true
+                            settings.allowFileAccess = true
+                            settings.allowContentAccess = true
+                            settings.layoutAlgorithm = WebSettings.LayoutAlgorithm.TEXT_AUTOSIZING
+                            webViewClient = object : WebViewClient() {
+                                override fun onPageFinished(view: WebView?, url: String?) {
+                                    super.onPageFinished(view, url)
+                                    //val numeros = valoresParametros.value.map { it.toIntOrNull() ?: 0 }
+                                    val numeros = valoresParametros.value.map { parseDecimalOuZero(it) }
+                                    aplicarParametrosNaWebView(numeros)
+                                }
+                            }
+                            layoutParams = LinearLayout.LayoutParams(
+                                LinearLayout.LayoutParams.MATCH_PARENT,
+                                LinearLayout.LayoutParams.MATCH_PARENT
+                            )
+                            loadUrl("http://localhost:12346/grafico.html?json=$estadoJson")
+                        }.also { webViewRef = it }
+                    },
+                    modifier = Modifier.fillMaxSize()
+                )
+            }
         }
 
-        // Botão no canto inferior direito
-        Button(
-            onClick = {
-                val intent = Intent(Intent.ACTION_VIEW).apply {
-                    data = Uri.parse(videoUrl) // Define a URL do vídeo
-                }
-                context.startActivity(intent)
-            },
-            colors = ButtonDefaults.buttonColors(
-                containerColor = Color(0xFF2E7D32), // Cor verde para o botão
-                contentColor = Color.White // Cor do texto
-            ),
+        val barraLateralScroll = rememberScrollState()
+
+        Column(
             modifier = Modifier
-                .align(Alignment.TopEnd) // Alinha o botão no canto superior direito
-                .padding(16.dp) // Padding para afastar da borda
+                .weight(0.25f)
+                .fillMaxHeight()
+                .background(Color(0xFF2E7D32))
+                .padding(16.dp)
+                .verticalScroll(barraLateralScroll),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Top
         ) {
-            Text(text = "Abrir Vídeo")
+            Text(
+                text = texto,
+                color = Color.White,
+                fontSize = 20.sp,
+                textAlign = TextAlign.Center
+            )
+
+            Spacer(modifier = Modifier.height(16.dp))
+
+            listaParametros.forEachIndexed { index, nomeParametro ->
+                OutlinedTextField(
+                    value = valoresParametros.value[index],
+                    onValueChange = { novoValor ->
+                        if (novoValor.isEmpty() || novoValor.matches(Regex("^-?\\d*([\\.,]\\d*)?$"))) {
+                            valoresParametros.value = valoresParametros.value.toMutableList().also { it[index] = novoValor }
+                        }
+                    },
+                    label = {
+                        Text(
+                            text = nomeParametro,
+                            modifier = Modifier.background(Color.White)
+                        )
+                    },
+                    singleLine = true,
+                    keyboardOptions = KeyboardOptions(
+                        keyboardType = KeyboardType.Decimal,
+                        //keyboardType = KeyboardType.Number,
+                        imeAction = ImeAction.Next
+                    ),
+                    colors = OutlinedTextFieldDefaults.colors(
+                        focusedContainerColor = Color.White,
+                        unfocusedContainerColor = Color.White,
+                        disabledContainerColor = Color.White,
+
+                        focusedLabelColor = Color.Black,
+                        unfocusedLabelColor = Color.Gray
+                        //focusedPlaceholderColor = Color.White
+                    ),
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(vertical = 4.dp)
+                )
+            }
+
+            Spacer(modifier = Modifier.height(16.dp))
+
+            Button(
+                onClick = {
+                    //val numeros = valoresParametros.value.map { it.toIntOrNull() ?: 0 }
+                    val numeros = valoresParametros.value.map { parseDecimalOuZero(it) }
+                    if (!carregarGrafico) {
+                        carregarGrafico = true
+                    } else {
+                        aplicarParametrosNaWebView(numeros)
+                    }
+                },
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = Color(0xFF1B5E20),
+                    contentColor = Color.White
+                ),
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                Text(text = "Calcular")
+            }
         }
     }
+
+    // Mantido para uso futuro
+    @Suppress("UNUSED_VARIABLE")
+    val urlVideoMantida = videoUrl
 
     // Stop the server when leaving the composable
     DisposableEffect(Unit) {
@@ -455,6 +566,8 @@ fun PreviewTela2() {
 fun PreviewTelaGraficoI() {
     TelaGraficoI(
         estadoJson = "DaviEGolias.json",
-        videoUrl = "https://www.youtube.com/watch?v=dQw4w9WgXcQ" // URL padrão
+        videoUrl = "https://www.youtube.com/watch?v=dQw4w9WgXcQ", // URL padrão
+        texto = "Texto de exemplo",
+        listaParametros = listOf("a", "b")
     )
 }
