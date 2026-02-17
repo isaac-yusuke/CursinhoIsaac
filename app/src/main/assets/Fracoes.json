@@ -4,23 +4,48 @@
   "graph": {
     "viewport": {
       "xmin": -11.237545987801472,
-      "ymin": -17.896879298204517,
+      "ymin": -17.047407883551053,
       "xmax": 12.7517118246997,
-      "ymax": 5.319624801206764
+      "ymax": 4.470153386553298
     },
     "showGrid": false,
     "showXAxis": false,
     "showYAxis": false,
     "xAxisNumbers": false,
     "yAxisNumbers": false,
-    "polarNumbers": false
+    "polarNumbers": false,
+    "__v12ViewportLatexStash": {
+      "xmin": "-11.237545987801472",
+      "xmax": "12.7517118246997",
+      "ymin": "-17.047407883551053",
+      "ymax": "4.470153386553298"
+    }
   },
   "expressions": {
     "list": [
       {
-        "type": "text",
-        "id": "121787",
-        "text": "Clique no botão \"Abrir Vídeo\" para ver o tutorial de como usar essa ferramenta"
+        "type": "expression",
+        "id": "num1",
+        "color": "#2d70b3",
+        "latex": "N_{um1}=1"
+      },
+      {
+        "type": "expression",
+        "id": "num2",
+        "color": "#388c46",
+        "latex": "N_{um2}=1"
+      },
+      {
+        "type": "expression",
+        "id": "num3",
+        "color": "#6042a6",
+        "latex": "N_{um3}=1"
+      },
+      {
+        "type": "expression",
+        "id": "num4",
+        "color": "#000000",
+        "latex": "N_{um4}=1"
       },
       {
         "type": "folder",
@@ -32,7 +57,7 @@
         "id": "121573",
         "folderId": "121699",
         "color": "#000000",
-        "latex": "N_{umerador1}=2",
+        "latex": "N_{umerador1}=N_{um1}",
         "slider": {
           "step": "1"
         }
@@ -42,7 +67,7 @@
         "id": "121627",
         "folderId": "121699",
         "color": "#000000",
-        "latex": "D_{enominador1}=4",
+        "latex": "D_{enominador1}=N_{um2}",
         "slider": {
           "step": "1"
         }
@@ -52,7 +77,7 @@
         "id": "121626",
         "folderId": "121699",
         "color": "#000000",
-        "latex": "N_{umerador2}=1",
+        "latex": "N_{umerador2}=N_{um3}",
         "slider": {
           "step": "1"
         }
@@ -62,7 +87,7 @@
         "id": "121625",
         "folderId": "121699",
         "color": "#000000",
-        "latex": "D_{enominador2}=3",
+        "latex": "D_{enominador2}=N_{um4}",
         "slider": {
           "step": "1"
         }

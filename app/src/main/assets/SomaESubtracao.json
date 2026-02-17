@@ -3,44 +3,42 @@
   "randomSeed": "299b5abe0a73e1040aacfe8fafd54478",
   "graph": {
     "viewport": {
-      "xmin": -6.652210217083932,
-      "ymin": -11.897752266338493,
-      "xmax": 9.041088474263518,
-      "ymax": 8.656568199384267
+      "xmin": -6.550260546542118,
+      "ymin": -7.994420851021106,
+      "xmax": 8.742891308926643,
+      "ymax": 3.475443040580456
     },
     "showGrid": false,
     "showXAxis": false,
     "showYAxis": false,
     "xAxisNumbers": false,
     "yAxisNumbers": false,
-    "polarNumbers": false
+    "polarNumbers": false,
+    "squareAxes": false,
+    "__v12ViewportLatexStash": {
+      "xmin": "-6.550260546542118",
+      "xmax": "8.742891308926643",
+      "ymin": "-7.994420851021106",
+      "ymax": "3.475443040580456"
+    }
   },
   "expressions": {
     "list": [
       {
-        "type": "text",
-        "id": "121789",
-        "text": "Clique no botão \"Abrir Vídeo\" para ver o tutorial de como usar essa ferramenta"
-      },
-      {
         "type": "expression",
-        "id": "121094",
+        "id": "num1",
         "color": "#c74440",
-        "latex": "N_{um1}=15",
+        "latex": "N_{um1}=115",
         "slider": {
-          "hardMax": true,
-          "max": "999",
           "step": "1"
         }
       },
       {
         "type": "expression",
-        "id": "121096",
+        "id": "num2",
         "color": "#c74440",
-        "latex": "N_{um2}=7",
+        "latex": "N_{um2}=38",
         "slider": {
-          "hardMax": true,
-          "max": "999",
           "step": "1"
         }
       },
@@ -55,6 +53,122 @@
         "id": "121904",
         "color": "#388c46",
         "latex": "T_{roca}"
+      },
+      {
+        "type": "folder",
+        "id": "121928",
+        "title": "Controles API",
+        "collapsed": true
+      },
+      {
+        "type": "text",
+        "id": "121924",
+        "folderId": "121928",
+        "text": "Variavel onNum controla se a conta aparece\nonImg controla se as imagens aparecem"
+      },
+      {
+        "type": "expression",
+        "id": "121922",
+        "folderId": "121928",
+        "color": "#c74440",
+        "latex": "o_{nNum}=1",
+        "slider": {
+          "hardMin": true,
+          "hardMax": true,
+          "min": "0",
+          "max": "1",
+          "step": "1"
+        }
+      },
+      {
+        "type": "expression",
+        "id": "121925",
+        "folderId": "121928",
+        "color": "#c74440",
+        "latex": "o_{nImg}=1",
+        "slider": {
+          "hardMin": true,
+          "hardMax": true,
+          "min": "0",
+          "max": "1",
+          "step": "1"
+        }
+      },
+      {
+        "type": "expression",
+        "id": "121834",
+        "folderId": "121928",
+        "color": "#6042a6",
+        "latex": "o_{p}=1",
+        "slider": {
+          "hardMin": true,
+          "hardMax": true,
+          "min": "0",
+          "max": "1",
+          "step": "1"
+        }
+      },
+      {
+        "type": "expression",
+        "id": "121929",
+        "folderId": "121928",
+        "color": "#388c46",
+        "latex": "x_{min}=-7"
+      },
+      {
+        "type": "expression",
+        "id": "121930",
+        "folderId": "121928",
+        "color": "#6042a6",
+        "latex": "x_{max}=5"
+      },
+      {
+        "type": "expression",
+        "id": "121931",
+        "folderId": "121928",
+        "color": "#000000",
+        "latex": "y_{min}=-6"
+      },
+      {
+        "type": "expression",
+        "id": "121932",
+        "folderId": "121928",
+        "color": "#c74440",
+        "latex": "y_{max}=3"
+      },
+      {
+        "type": "expression",
+        "id": "121933",
+        "folderId": "121928",
+        "color": "#000000",
+        "latex": "x=\\left[x_{min},x_{max}\\right]",
+        "hidden": true,
+        "lineStyle": "DASHED"
+      },
+      {
+        "type": "expression",
+        "id": "121934",
+        "folderId": "121928",
+        "color": "#000000",
+        "latex": "y=\\left[y_{min},y_{max}\\right]",
+        "hidden": true,
+        "lineStyle": "DASHED"
+      },
+      {
+        "type": "expression",
+        "id": "121926",
+        "folderId": "121928",
+        "color": "#2d70b3",
+        "latex": "s_{howNum}=\\left\\{o_{nNum}=0:\\left(10^{4},10^{4}\\right),\\left(0,0\\right)\\right\\}",
+        "hidden": true
+      },
+      {
+        "type": "expression",
+        "id": "121927",
+        "folderId": "121928",
+        "color": "#c74440",
+        "latex": "s_{howImg}=\\left\\{o_{nImg}=0:\\left(10^{4},10^{4}\\right),\\left(0,0\\right)\\right\\}",
+        "hidden": true
       },
       {
         "type": "folder",
@@ -96,20 +210,6 @@
         "id": "121836",
         "folderId": "121041",
         "text": "op = 0 => soma\nop = 1 => subtração"
-      },
-      {
-        "type": "expression",
-        "id": "121834",
-        "folderId": "121041",
-        "color": "#6042a6",
-        "latex": "o_{p}=1",
-        "slider": {
-          "hardMin": true,
-          "hardMax": true,
-          "min": "0",
-          "max": "1",
-          "step": "1"
-        }
       },
       {
         "type": "expression",
@@ -172,7 +272,7 @@
         "id": "121042",
         "folderId": "121041",
         "color": "#388c46",
-        "latex": "P_{conta}=\\left(0,0\\right)",
+        "latex": "P_{conta}=\\left(0,0\\right)+s_{howNum}",
         "hidden": true
       },
       {
@@ -194,6 +294,7 @@
         "folderId": "121041",
         "color": "#000000",
         "latex": "\\frac{b_{otao}\\left(\\left[t_{0},r,o,c,a\\right],t\\right)}{1.25}+\\left(-4,-5\\right)",
+        "hidden": true,
         "clickableInfo": {
           "enabled": true,
           "latex": "T_{roca}"
@@ -205,7 +306,8 @@
         "folderId": "121041",
         "color": "#000000",
         "latex": "P_{conta}+T_{amConta}n_{um4}\\left(N_{um1},t\\right)",
-        "colorLatex": "c_{or1}"
+        "colorLatex": "c_{or1}",
+        "lineOpacity": "1"
       },
       {
         "type": "expression",
@@ -213,14 +315,16 @@
         "folderId": "121041",
         "color": "#000000",
         "latex": "P_{conta}+T_{amConta}n_{um4}\\left(N_{um2},t\\right)+\\left(0,-1.5\\right)",
-        "colorLatex": "c_{or2}"
+        "colorLatex": "c_{or2}",
+        "lineOpacity": "1"
       },
       {
         "type": "expression",
         "id": "121101",
         "folderId": "121041",
         "color": "#000000",
-        "latex": "P_{conta}+T_{amConta}\\left\\{o_{p}=0:M_{ais},M_{enos}\\right\\}+\\left(-d_{igs2}-1,-1.5\\right)"
+        "latex": "P_{conta}+T_{amConta}\\left\\{o_{p}=0:M_{ais},M_{enos}\\right\\}+\\left(-d_{igs2}-1,-1.5\\right)",
+        "lineOpacity": "1"
       },
       {
         "type": "expression",
@@ -297,14 +401,16 @@
         "id": "121881",
         "folderId": "121041",
         "color": "#000000",
-        "latex": "\\left(\\frac{n_{um4}\\left(v_{aiumSoma},t\\right)}{2}+\\left(-\\left[1...\\operatorname{length}\\left(v_{aiumSoma}\\right)\\right],1.5\\right)\\right)s_{oma}"
+        "latex": "\\left(\\frac{n_{um4}\\left(v_{aiumSoma},t\\right)}{2}+\\left(-\\left[1...\\operatorname{length}\\left(v_{aiumSoma}\\right)\\right],1.5\\right)\\right)s_{oma}",
+        "lineOpacity": "1"
       },
       {
         "type": "expression",
         "id": "121889",
         "folderId": "121041",
         "color": "#000000",
-        "latex": "\\left(\\frac{n_{um4}\\left(v_{aiumSubRascunho},t\\right)}{2.5}+\\left(01.-\\left[1...\\operatorname{length}\\left(v_{aiumSubRascunho}\\right)\\right],1.5\\right)\\right)s_{ub}"
+        "latex": "\\left(\\frac{n_{um4}\\left(v_{aiumSubRascunho},t\\right)}{2.5}+\\left(01.-\\left[1...\\operatorname{length}\\left(v_{aiumSubRascunho}\\right)\\right],1.5\\right)\\right)s_{ub}",
+        "lineOpacity": "1"
       },
       {
         "type": "expression",
@@ -389,24 +495,26 @@
         "folderId": "121041",
         "color": "#000000",
         "latex": "P_{conta}+\\left(\\left(0d_{igs1}-d_{igs}\\left(R_{esultado}\\right)\\right)\\left(-\\frac{1}{2}+1t\\right),-1.75\\right)",
-        "hidden": true
+        "lineOpacity": "1"
       },
       {
         "type": "expression",
         "id": "121115",
         "folderId": "121041",
         "color": "#000000",
-        "latex": "\\left[\\left(x_{1},-1.75\\right),\\left(x_{2},-1.75\\right)\\right]",
+        "latex": "\\left[\\left(x_{1},-1.75\\right),\\left(x_{2},-1.75\\right)\\right]+P_{conta}",
         "points": false,
         "lines": true,
-        "dragMode": "NONE"
+        "dragMode": "NONE",
+        "lineOpacity": "1"
       },
       {
         "type": "expression",
         "id": "121102",
         "folderId": "121041",
         "color": "#000000",
-        "latex": "P_{conta}+T_{amConta}n_{um4}\\left(R_{esultado},t\\right)+\\left(0,-3\\right)"
+        "latex": "P_{conta}+T_{amConta}n_{um4}\\left(R_{esultado},t\\right)+\\left(0,-3\\right)",
+        "lineOpacity": "1"
       },
       {
         "type": "expression",
@@ -1173,6 +1281,7 @@
         "type": "folder",
         "id": "121829",
         "title": "Imagens",
+        "hidden": true,
         "collapsed": true
       },
       {
@@ -1193,7 +1302,7 @@
         "id": "121844",
         "folderId": "121829",
         "color": "#c74440",
-        "latex": "P_{img}=\\left(2.5,0.\\right)",
+        "latex": "P_{img}=\\left(2.5,0.\\right)+s_{howImg}",
         "hidden": true
       },
       {

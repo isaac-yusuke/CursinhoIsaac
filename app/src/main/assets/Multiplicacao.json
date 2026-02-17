@@ -3,47 +3,44 @@
   "randomSeed": "299b5abe0a73e1040aacfe8fafd54478",
   "graph": {
     "viewport": {
-      "xmin": -8.689577641012097,
-      "ymin": -12.890114456228805,
-      "xmax": 11.310422358988362,
-      "ymax": 6.465635755695914
+      "xmin": -9.148998540822678,
+      "ymin": -13.03668074125045,
+      "xmax": 12.101001459177823,
+      "ymax": 6.023857961678871
     },
     "showGrid": false,
     "showXAxis": false,
     "showYAxis": false,
     "xAxisNumbers": false,
     "yAxisNumbers": false,
-    "polarNumbers": false
+    "polarNumbers": false,
+    "__v12ViewportLatexStash": {
+      "xmin": "-9.148998540822678",
+      "xmax": "12.101001459177823",
+      "ymin": "-13.03668074125045",
+      "ymax": "6.023857961678871"
+    }
   },
   "expressions": {
     "list": [
       {
-        "type": "text",
-        "id": "121789",
-        "text": "Clique no botão \"Abrir Vídeo\" para ver o tutorial de como usar essa ferramenta"
-      },
-      {
         "type": "expression",
-        "id": "121094",
+        "id": "num1",
         "color": "#c74440",
-        "latex": "N_{um1}=999",
+        "latex": "N_{um1}=50",
         "slider": {
-          "hardMin": true,
           "hardMax": true,
-          "min": "0",
           "max": "999",
           "step": "1"
         }
       },
       {
         "type": "expression",
-        "id": "121096",
+        "id": "num2",
         "color": "#c74440",
-        "latex": "N_{um2}=999",
+        "latex": "N_{um2}=123",
         "slider": {
-          "hardMin": true,
           "hardMax": true,
-          "min": "0",
           "max": "999",
           "step": "1"
         }
@@ -59,6 +56,20 @@
         "id": "121041",
         "title": "Conta",
         "collapsed": true
+      },
+      {
+        "type": "expression",
+        "id": "121792",
+        "folderId": "121041",
+        "color": "#c74440",
+        "latex": "o_{n}=1",
+        "slider": {
+          "hardMin": true,
+          "hardMax": true,
+          "min": "0",
+          "max": "1",
+          "step": "1"
+        }
       },
       {
         "type": "expression",
@@ -107,21 +118,24 @@
         "id": "121099",
         "folderId": "121041",
         "color": "#000000",
-        "latex": "P_{conta}+T_{amConta}n_{um3}\\left(N_{um1},t\\right)+\\left(0,0\\right)"
+        "latex": "P_{conta}+T_{amConta}n_{um3}\\left(N_{um1},t\\right)+\\left(0,0\\right)",
+        "lineOpacity": "o_{n}"
       },
       {
         "type": "expression",
         "id": "121105",
         "folderId": "121041",
         "color": "#000000",
-        "latex": "P_{conta}+T_{amConta}n_{um3}\\left(N_{um2},t\\right)+\\left(d_{igs}\\left(N_{um1}\\right)-d_{igs}\\left(N_{um2}\\right),-1.5\\right)"
+        "latex": "P_{conta}+T_{amConta}n_{um3}\\left(N_{um2},t\\right)+\\left(d_{igs}\\left(N_{um1}\\right)-d_{igs}\\left(N_{um2}\\right),-1.5\\right)",
+        "lineOpacity": "o_{n}"
       },
       {
         "type": "expression",
         "id": "121101",
         "folderId": "121041",
         "color": "#000000",
-        "latex": "P_{conta}+T_{amConta}l_{etra}\\left(x_{0},t\\right)+\\left(d_{igs}\\left(N_{um1}\\right)-d_{igs}\\left(N_{um2}\\right)-1,-1.5\\right)"
+        "latex": "P_{conta}+T_{amConta}l_{etra}\\left(x_{0},t\\right)+\\left(d_{igs}\\left(N_{um1}\\right)-d_{igs}\\left(N_{um2}\\right)-1,-1.5\\right)+\\left\\{N_{um2}<0:\\left(-1,0\\right),\\left(0,0\\right)\\right\\}",
+        "lineOpacity": "o_{n}"
       },
       {
         "type": "expression",
@@ -139,21 +153,31 @@
         "latex": "\\left[\\left(x_{1},-1.75\\right),\\left(x_{2},-1.75\\right)\\right]",
         "points": false,
         "lines": true,
-        "dragMode": "NONE"
+        "dragMode": "NONE",
+        "lineOpacity": "o_{n}"
       },
       {
         "type": "expression",
         "id": "121108",
         "folderId": "121041",
         "color": "#000000",
-        "latex": "P_{conta}+T_{amConta}n_{um3}\\left(N_{um2},t\\right)+\\left(d_{igs}\\left(N_{um1}\\right)-d_{igs}\\left(N_{um2}\\right),-1.5\\right)"
+        "latex": "P_{conta}+T_{amConta}n_{um3}\\left(N_{um2},t\\right)+\\left(d_{igs}\\left(N_{um1}\\right)-d_{igs}\\left(N_{um2}\\right),-1.5\\right)",
+        "lineOpacity": "o_{n}"
+      },
+      {
+        "type": "expression",
+        "id": "121937",
+        "folderId": "121041",
+        "color": "#c74440",
+        "latex": "p_{arcelas}=d_{igitos}\\left(N_{um2}\\right)\\cdot10^{\\left[d_{igs}\\left(N_{um2}\\right)-1...0\\right]}\\cdot N_{um1}"
       },
       {
         "type": "expression",
         "id": "121110",
         "folderId": "121041",
         "color": "#000000",
-        "latex": "P_{conta}+T_{amConta}n_{um3}\\left(d_{igitos}\\left(N_{um2}\\right)N_{um1}\\cdot10^{\\left[d_{igs}\\left(N_{um2}\\right)-1...0\\right]},t\\right)+\\left(d_{igs}\\left(N_{um1}\\right)-d_{igs}\\left(d_{igitos}\\left(N_{um2}\\right)N_{um1}\\cdot10^{\\left[d_{igs}\\left(N_{um2}\\right)-1...0\\right]}\\right),-1.5-1.5\\cdot\\left[d_{igs}\\left(N_{um2}\\right)...0\\right]\\right)"
+        "latex": "P_{conta}+T_{amConta}n_{um3}\\left(p_{arcelas},t\\right)+\\left(d_{igs}\\left(N_{um1}\\right)-d_{igs}\\left(p_{arcelas}\\right),-1.5-1.5\\cdot\\left[d_{igs}\\left(N_{um2}\\right)...0\\right]\\right)",
+        "lineOpacity": "o_{n}"
       },
       {
         "type": "expression",
@@ -171,14 +195,16 @@
         "latex": "\\left[\\left(x_{3},-1.75-1.5\\cdot d_{igs}\\left(N_{um2}\\right)\\right),\\left(x_{2},-1.75-1.5\\cdot d_{igs}\\left(N_{um2}\\right)\\right)\\right]",
         "points": false,
         "lines": true,
-        "dragMode": "NONE"
+        "dragMode": "NONE",
+        "lineOpacity": "o_{n}"
       },
       {
         "type": "expression",
         "id": "121102",
         "folderId": "121041",
         "color": "#388c46",
-        "latex": "P_{conta}+T_{amConta}n_{um3}\\left(R_{esultado},t\\right)+\\left(\\left(d_{igs}\\left(N_{um1}\\right)-d_{igs}\\left(R_{esultado}\\right)\\right),-3-1.5d_{igs}\\left(N_{um2}\\right)\\right)"
+        "latex": "P_{conta}+T_{amConta}n_{um3}\\left(R_{esultado},t\\right)+\\left(\\left(d_{igs}\\left(N_{um1}\\right)-d_{igs}\\left(R_{esultado}\\right)\\right),-3-1.5d_{igs}\\left(N_{um2}\\right)\\right)",
+        "lineOpacity": "o_{n}"
       },
       {
         "type": "folder",
@@ -238,19 +264,6 @@
       },
       {
         "type": "expression",
-        "id": "120996",
-        "folderId": "120822",
-        "color": "#000000",
-        "latex": "n_{0}=0",
-        "hidden": true,
-        "slider": {
-          "hardMin": true,
-          "min": "0",
-          "step": "1"
-        }
-      },
-      {
-        "type": "expression",
         "id": "121086",
         "folderId": "120822",
         "color": "#c74440",
@@ -258,18 +271,17 @@
       },
       {
         "type": "expression",
-        "id": "121087",
-        "folderId": "120822",
-        "color": "#2d70b3",
-        "latex": "n_{um2}\\left(\\left[n_{0},1,2,3,4\\right],t\\right)+\\left(\\left[1...5\\right],0\\right)",
-        "hidden": true
-      },
-      {
-        "type": "expression",
         "id": "121093",
         "folderId": "120822",
         "color": "#c74440",
-        "latex": "n_{um3}\\left(n_{x},t\\right)=l_{etra2}\\left(\\operatorname{floor}\\left(\\operatorname{mod}\\left(\\frac{n_{x}}{10^{\\operatorname{floor}\\left(d_{igs}\\left(n_{x}\\right)\\left(1-t\\right)\\right)}},10\\right)\\right),\\operatorname{mod}\\left(d_{igs}\\left(n_{x}\\right)t,1\\right)\\right)+\\left(\\operatorname{floor}\\left(d_{igs}\\left(n_{x}\\right)t\\right),0\\right)"
+        "latex": "n_{um3}\\left(n_{0},t\\right)=\\left\\{t<\\frac{1}{2}:\\left\\{n_{0}<0:\\left(t-1,\\frac{1}{2}\\right),\\left(0,0\\right)\\right\\},n_{um32}\\left(\\left|n_{0}\\right|,\\operatorname{mod}\\left(2t,1\\right)\\right)\\right\\}"
+      },
+      {
+        "type": "expression",
+        "id": "121791",
+        "folderId": "120822",
+        "color": "#2d70b3",
+        "latex": "n_{um32}\\left(n_{0},t\\right)=l_{etra2}\\left(\\operatorname{floor}\\left(\\operatorname{mod}\\left(\\frac{n_{0}}{10^{\\operatorname{floor}\\left(d_{igs}\\left(n_{0}\\right)\\left(1-t\\right)\\right)}},10\\right)\\right),\\operatorname{mod}\\left(d_{igs}\\left(n_{0}\\right)t,1\\right)\\right)+\\left(\\operatorname{floor}\\left(d_{igs}\\left(n_{0}\\right)t\\right),0\\right)"
       },
       {
         "type": "folder",
@@ -799,21 +811,21 @@
         "id": "121088",
         "folderId": "14959",
         "color": "#388c46",
-        "latex": "d_{igs}\\left(x\\right)=\\left\\{x=0:1,\\operatorname{floor}\\left(\\log\\left(x\\right)+1\\right)\\right\\}"
+        "latex": "d_{igs}\\left(x\\right)=\\left\\{x=0:1,\\operatorname{floor}\\left(\\log\\left(\\left|x\\right|\\right)+1\\right)\\right\\}"
       },
       {
         "type": "expression",
         "id": "121106",
         "folderId": "14959",
         "color": "#2d70b3",
-        "latex": "d_{igitos}\\left(x\\right)=\\left\\{x=0:\\left[0\\right],\\operatorname{floor}\\left(\\operatorname{mod}\\left(\\frac{x}{10^{\\left[\\operatorname{floor}\\left(\\log\\left(\\left\\{x=0:1,x\\right\\}\\right)\\right)...0\\right]}},10\\right)\\right)\\right\\}"
+        "latex": "d_{igitos}\\left(x\\right)=\\left\\{x=0:\\left[0\\right],\\operatorname{floor}\\left(\\operatorname{mod}\\left(\\frac{\\left|x\\right|}{10^{\\left[\\operatorname{floor}\\left(\\log\\left(\\left\\{x=0:1,\\left|x\\right|\\right\\}\\right)\\right)...0\\right]}},10\\right)\\right)\\right\\}\\cdot\\operatorname{sign}\\left(x\\right)"
       },
       {
         "type": "expression",
         "id": "121107",
         "folderId": "14959",
         "color": "#388c46",
-        "latex": "d_{igitos}\\left(12345\\right)"
+        "latex": "d_{igitos}\\left(-12345\\right)"
       },
       {
         "type": "expression",
