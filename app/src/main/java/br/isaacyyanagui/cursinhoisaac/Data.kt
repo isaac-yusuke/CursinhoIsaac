@@ -37,7 +37,7 @@ val graficos = listOf(
         arquivoJson = "Fracoes.json",
         videoUrl = "https://www.youtube.com/watch?v=HfnM1_b0OxE",
         texto = "Frações\n\nInforme os parâmetros da expressão.",
-        listaParametros = listOf("a", "b")
+        listaParametros = listOf("a", "b", "c", "d")
     ),
     GraficoData(
         titulo = "Números Decimais",
