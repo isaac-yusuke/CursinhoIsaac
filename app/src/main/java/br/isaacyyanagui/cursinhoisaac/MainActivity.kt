@@ -475,16 +475,26 @@ fun TelaGraficoI(
                             valoresParametros.value = valoresParametros.value.toMutableList().also { it[index] = novoValor }
                         }
                     },
-                    label = { Text(nomeParametro) },
+                    label = {
+                        Text(
+                            text = nomeParametro,
+                            modifier = Modifier.background(Color.White)
+                        )
+                    },
                     singleLine = true,
                     keyboardOptions = KeyboardOptions(
-                        keyboardType = KeyboardType.Number,
+                        keyboardType = KeyboardType.Decimal,
+                        //keyboardType = KeyboardType.Number,
                         imeAction = ImeAction.Next
                     ),
                     colors = OutlinedTextFieldDefaults.colors(
                         focusedContainerColor = Color.White,
                         unfocusedContainerColor = Color.White,
-                        disabledContainerColor = Color.White
+                        disabledContainerColor = Color.White,
+
+                        focusedLabelColor = Color.Black,
+                        unfocusedLabelColor = Color.Gray
+                        //focusedPlaceholderColor = Color.White
                     ),
                     modifier = Modifier
                         .fillMaxWidth()

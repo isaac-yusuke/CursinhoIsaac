@@ -99,7 +99,7 @@
         "id": "121834",
         "folderId": "121928",
         "color": "#6042a6",
-        "latex": "o_{p}=1",
+        "latex": "o_{p}=0",
         "slider": {
           "hardMin": true,
           "hardMax": true,
@@ -1281,7 +1281,6 @@
         "type": "folder",
         "id": "121829",
         "title": "Imagens",
-        "hidden": true,
         "collapsed": true
       },
       {
