@@ -94,6 +94,9 @@ fun EscolinhaApp() {
         composable("tela3") {
             Tela3() // tela de instruções
         }
+        composable("tela4") {
+            Tela4() // Outros apps (Escolinha de Jesus)
+        }
         composable("grafico/{index}") { backStackEntry ->
             val index = backStackEntry.arguments?.getString("index")?.toIntOrNull() ?: 0
             // Obtém os dados do gráfico correspondente de Data.kt
@@ -418,9 +421,9 @@ fun Tela4() {
                 item {
                     Image(
                         painter = rememberImagePainter(R.drawable.escolinhadejesus),
-                        contentDescription = "Ícone"
-                        //contentScale = ContentScale.None
-                        //modifier = Modifier.fillMaxSize()
+                        contentDescription = "Ícone",
+                        contentScale = ContentScale.None,
+                        modifier = Modifier.fillMaxSize()
                     )
                 }
                 item {
