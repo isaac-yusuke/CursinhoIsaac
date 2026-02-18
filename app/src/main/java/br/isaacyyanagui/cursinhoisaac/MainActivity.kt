@@ -1,5 +1,6 @@
 package br.isaacyyanagui.cursinhoisaac
 
+import android.content.Intent
 import android.os.Bundle
 import android.net.Uri
 import android.webkit.WebSettings
@@ -388,6 +389,8 @@ fun Tela3() {
 
 @Composable // OUTROS APPS (ESCOLINHA DE JESUS)
 fun Tela4() {
+    val context = LocalContext.current
+
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -421,16 +424,29 @@ fun Tela4() {
                 item {
                     Image(
                         painter = rememberImagePainter(R.drawable.escolinhadejesus),
-                        contentDescription = "Ícone",
-                        contentScale = ContentScale.None,
-                        modifier = Modifier.fillMaxSize()
+                        contentDescription = "Ícone Escolinha de Jesus",
+                        contentScale = ContentScale.Fit, // ou Crop
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .height(180.dp)   // ajuste como quiser
+                            //.aspectRatio(1.6f)
+                            .clickable {
+                                val intent = Intent(
+                                    Intent.ACTION_VIEW,
+                                    Uri.parse("https://play.google.com/store/apps/details?id=br.isaacyyanagui.escolinhadejesus&hl=pt_BR") //https://play.google.com/store/apps/details?id=br.isaacyyanagui.escolinhadejesus&hl=pt_BR
+                                )
+                                context.startActivity(intent)
+                            }
                     )
                 }
+
+                item{Spacer(modifier = Modifier.height(14.dp)) } // Espaçamento
+
                 item {
                     Text(
                         text = """          
                              Quer ver histórias da Bíblia com animações interativas?
-                             Baixe o app Escolinha de Jesus na PLay Store!
+                             Toque na imagem e baixe o app Escolinha de Jesus na Play Store!
                             """.trimIndent(),
                         color = Color.White,
                         fontSize = 25.sp,
