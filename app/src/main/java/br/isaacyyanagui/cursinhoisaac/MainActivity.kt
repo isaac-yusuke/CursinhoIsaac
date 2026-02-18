@@ -80,7 +80,8 @@ fun EscolinhaApp() {
             Tela1(  // Tela inicial
                 onIniciarClick = { navController.navigate("tela2") },
                 onInstrucoesClick = { navController.navigate("tela3") },
-                onReverVideoClick = { navController.navigate("telaVideo") } // Exibe o vídeo ao clicar na imagem3
+                onReverVideoClick = { navController.navigate("telaVideo") }, // Exibe o vídeo ao clicar na imagem3
+                onOutrosAppsClick = { navController.navigate("tela4") } 
             )
         }
         composable("tela2") {
@@ -155,7 +156,7 @@ fun TelaVideo(navController: NavController) {
 
 
 @Composable // Tela inicial
-fun Tela1(onIniciarClick: () -> Unit, onInstrucoesClick: () -> Unit, onReverVideoClick: () -> Unit) {
+fun Tela1(onIniciarClick: () -> Unit, onInstrucoesClick: () -> Unit, onOutrosAppsClick: () -> Unit, onReverVideoClick: () -> Unit) {
     val context = LocalContext.current
 
     Box(
@@ -207,6 +208,22 @@ fun Tela1(onIniciarClick: () -> Unit, onInstrucoesClick: () -> Unit, onReverVide
             ) {
                 Text(text = "Instruções", fontSize = 30.sp)
             }
+
+            Spacer(modifier = Modifier.height(16.dp)) // Espaçamento
+
+            // Botão "Outros apps (escolinha de Jesus)"
+            Button(
+                onClick = onOutrosAppsClick,
+                shape = RectangleShape,
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = Color(0xFF2E7D32),
+                    contentColor = Color.White
+                ),
+                border = BorderStroke(3.dp, Color.Black)
+            ) {
+                Text(text = "Outros Apps", fontSize = 30.sp)
+            }
+
         }
 /*
         // Imagem pequena no canto inferior direito - TIRA ESSE PRA POR NA PLAYSTORE
@@ -365,6 +382,65 @@ fun Tela3() {
 
     }
 }
+
+@Composable // OUTROS APPS (ESCOLINHA DE JESUS)
+fun Tela4() {
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(
+                end = WindowInsets.navigationBars.asPaddingValues().calculateEndPadding(LayoutDirection.Ltr)
+            )
+            .background(color = Color(0xFF2E7D32)), // Fundo verde escuro
+        contentAlignment = Alignment.Center
+    ) {
+        // Imagem de fundo
+        Image(
+            painter = rememberImagePainter(R.drawable.imagem1),
+            contentDescription = "Fundo",
+            contentScale = ContentScale.FillBounds,
+            modifier = Modifier.fillMaxSize()
+        )
+
+        // Retângulo centralizado
+        Box(
+            modifier = Modifier
+                .fillMaxWidth(0.9f)
+                .fillMaxHeight(0.9f)
+                .background(color = Color(0xFF2E7D32)) // Cor do retângulo
+                .border(width = 3.dp, color = Color.Black), // Borda preta
+            contentAlignment = Alignment.Center // Centraliza o texto
+        ) {
+            LazyColumn(
+                modifier = Modifier.padding(20.dp) // Adiciona padding em toda a coluna
+                , horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                item {
+                    Image(
+                        painter = rememberImagePainter(R.drawable.escolinhadejesus),
+                        contentDescription = "Ícone"
+                        //contentScale = ContentScale.None
+                        //modifier = Modifier.fillMaxSize()
+                    )
+                }
+                item {
+                    Text(
+                        text = """          
+                             Quer ver histórias da Bíblia com animações interativas?
+                             Baixe o app Escolinha de Jesus na PLay Store!
+                            """.trimIndent(),
+                        color = Color.White,
+                        fontSize = 25.sp,
+                        textAlign = TextAlign.Justify,
+                        lineHeight = 35.sp
+                    )
+                }
+            }
+        }
+
+    }
+}
+
 
 fun parseDecimalOuZero(valor: String): Double {
     val normalizado = valor.replace(',', '.')
@@ -547,7 +623,8 @@ fun PreviewTela1() {
     Tela1(
         onIniciarClick = {},
         onInstrucoesClick = {},
-        onReverVideoClick = {}
+        onReverVideoClick = {},
+        onOutrosAppsClick = {}
     )
 }
 
