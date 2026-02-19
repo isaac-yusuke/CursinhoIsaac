@@ -12,8 +12,8 @@ android {
         applicationId = "br.isaacyyanagui.cursinhoisaac"
         minSdk = 24
         targetSdk = 35
-        versionCode = 8      //Tem que mudar sempre que fizer nova versao
-        versionName = "1.9"  //Tem que mudar sempre que fizer nova versao
+        versionCode = 9      //Tem que mudar sempre que fizer nova versao
+        versionName = "2.0"  //Tem que mudar sempre que fizer nova versao
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
